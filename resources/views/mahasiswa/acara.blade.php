@@ -1,5 +1,5 @@
 @section('title', 'Acara') 
-@extends('layouts.admin.main')
+@extends('layouts.mahasiswa.main')
 @section('style')
 <!-- DataTables css -->
 <!-- <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> -->
