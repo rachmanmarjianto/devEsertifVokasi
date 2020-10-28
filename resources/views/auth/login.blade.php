@@ -33,17 +33,17 @@
                         <div class="auth-box-right">
                             <div class="card">
                                 <div class="card-body">
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form action="{{ route('login') }}" method="POST">
                                     @csrf
                                         <div class="form-head">
                                             <h1>E-Sertifikat Fakultas Vokasi</h1>
                                         </div>                                        
                                         <h4 class="text-primary my-4">Log in !</h4>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username here" required>
+                                            <input type="text" class="form-control" name="USERNAME" id="username" placeholder="Enter Username here" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password here" required>
+                                            <input type="password" class="form-control" name="PASSWORD" id="password" placeholder="Enter Password here" required>
                                         </div>
                                         <div class="form-row mb-3">
                                             <div class="col-sm-6">

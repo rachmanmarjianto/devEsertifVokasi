@@ -2,10 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('user-login');
-});
+Auth::routes();
 
-Route::get('/auth', function () {
+Route::get('/', 'HomeController@index')->name('home');
+
+// Route::get('/admin-acara', function () {
+//     return view('admin.acara');
+// })->middleware('auth');
+
+// Route::get('/mahasiswa-acara', function () {
+//     return view('mahasiswa.acara')->middleware('auth');
+// });
+
+Route::get('/admin-acara', function () {
     return view('admin.acara');
 });

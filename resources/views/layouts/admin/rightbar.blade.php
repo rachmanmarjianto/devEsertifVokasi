@@ -68,7 +68,7 @@
                                                     </a>
                                                 </li>
                                                 <li class="media dropdown-item">
-                                                    <a href="{{ url('/logout') }}" class="profile-icon">
+                                                    <a href="{{ route('logout') }}" class="profile-icon">
                                                         <img src="{{ asset('/assets/images/svg-icon/logout.svg') }}" class="img-fluid" alt="logout">
                                                         Logout
                                                     </a>
