@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use Session;
 
 class HomeController extends Controller
 {
@@ -25,11 +26,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->id_tipe_user == 1) {
+        if (Auth::user()->ID_TIPE_USER == 1) {
             return redirect()->route('admin-acara');
 
-         } else if (Auth::user()->id_tipe_user == 2) {
+         } else if (Auth::user()->ID_TIPE_USER == 2) {
             return redirect()->route('mahasiswa-acara');
          }
+    }
+
+    public function logout(){
+        Auth::logout();
+        Session::flush();
+
+        return redirect('login');
     }
 }
