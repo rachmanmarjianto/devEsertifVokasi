@@ -5,12 +5,9 @@
  */
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 /**
  * Class User
@@ -29,7 +26,7 @@ class User extends Authenticatable
 {
 	use Notifiable;
 	protected $table = 'user';
-	protected $primaryKey = 'USERNAME';
+	protected $primaryKey = 'username';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -44,7 +41,8 @@ class User extends Authenticatable
 
 	protected $fillable = [
 		'ID_TIPE_USER',
-		'PASSWORD',
+		'password',
+		'username',
 		'STATUS'
 	];
 
@@ -55,6 +53,6 @@ class User extends Authenticatable
 
 	public function peserta_acaras()
 	{
-		return $this->hasMany(PesertaAcara::class, 'USERNAME');
+		return $this->hasMany(PesertaAcara::class, 'username');
 	}
 }
