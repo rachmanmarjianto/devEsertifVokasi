@@ -16,7 +16,7 @@ class CreateJenisKegiatanTable extends Migration
         Schema::create('jenis_kegiatan', function (Blueprint $table) {
             $table->integer('ID_JENIS_KEGIATAN', true);
             $table->integer('ID_KELOMPOK_KEGIATAN')->index('BAGIAN_DARI_FK');
-            $table->string('JENIS_KEGIATAN', 100);
+            $table->string('JENIS_KEGIATAN');
         });
     }
 
