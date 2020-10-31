@@ -21,10 +21,11 @@ class CreateAcaraTable extends Migration
             $table->integer('ID_TAHUN_AKADEMIK')->index('PADA_FK');
             $table->integer('ID_JENIS_KEGIATAN')->index('MERUPAKAN_FK');
             $table->string('NAMA_ACARA', 300);
+            $table->string('PENYELENGGARA', 300);
             $table->date('TANGGAL_PENYELENGGARAAN');
             $table->timestamp('TIMESTAMP')->useCurrent();
             $table->text('FILE_SERTIF')->nullable();
-            $table->string('PENYELENGGARA', 300);
+            $table->text('FILE_NAMA')->nullable();
         });
     }
 
