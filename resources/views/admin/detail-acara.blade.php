@@ -106,33 +106,83 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <label>File Sertifikat</label>
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                            <h6>: &nbsp; lorem ipsum</h6>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <label>File Data Peserta</label>
+                        </div>
+                        <div class="col-md-9 col-sm-12">
+                            <h6>: &nbsp; lorem ipsum</h6>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="card-header">
-                    <h5 class="card-title">Daftar Peserta</h5>
+                    <div class="row justify-content-between mx-3">
+                        <h5 class="card-title">Daftar Peserta</h5>
+                        <button class="btn btn-sm btn-warning text-dark not-editing" id="edit-btn">
+                            <i class="fas fa-pen mr-2"></i>
+                            EDIT
+                        </button>
+                    </div>
+                    
                 </div>
                 <div class="card-body">
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="read-table-container">
                         <table class="table table-striped table-bordered datatable-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
+                                    <th>NIM</th>
                                     <th>Nama</th>
                                     <th>Partisipasi</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr id="peserta-151811513000">
+                                    <td id="nomor-151811513000">1</td>
+                                    <td id="nim-151811513000">151811513000</td>
+                                    <td id="nama-151811513000">Andrico Cahyadi</td>
+                                    <td id="partisipasi-151811513000">Panitia</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="table-responsive" id="edit-table-container">
+                        <table class="table table-striped table-bordered datatable-table" id="edit-table">
+                            <thead class="thead-dark">
                                 <tr>
-                                    <td>1</td>
-                                    <td>Andrico Cahyadi</td>
-                                    <td>Panitia</td>
-                                    <td class="aksi">
-                                        <button class="btn btn-sm btn-warning text-dark" data-toggle="modal" data-target="#modal-edit-peserta">
-                                            <i class="fas fa-pen mr-2"></i>
-                                            EDIT
-                                        </button>
+                                    <th>No.</th>
+                                    <th>NIM</th>
+                                    <th>Nama</th>
+                                    <th>Partisipasi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="peserta-151811513000">
+                                    <td id="nomor-151811513000">1</td>
+                                    <td id="nim-151811513000">
+                                        <input class="form-control" type="number" name="nim[]" required value="151811513000">
+                                    </td>
+                                    <td id="nama-151811513000">
+                                        <input class="form-control" type="text" name="nama[]" required value="Andrico Cahyadi">
+                                    </td>
+                                    <td id="partisipasi-151811513000">
+                                        <select class="form-control" name="partisipasi[]" required>
+                                            <option value="1">Panitia</option>
+                                            <option value="2">Peserta</option>
+                                        </select>
                                     </td>
                                 </tr>
                             </tbody>
@@ -147,7 +197,7 @@
 </div>
 <!-- End Contentbar -->
 
-{{-- Start Modal Edit Peserta --}}
+<!-- {{-- Start Modal Edit Peserta --}}
 <div class="modal fade" id="modal-edit-peserta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
@@ -173,12 +223,12 @@
         </div>
     </div>
 </div>
-{{-- End of Modal Edit Peserta --}}
+{{-- End of Modal Edit Peserta --}} -->
 @endsection 
 
 @section('script')
 <!-- Datatable js -->
 <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="{{ asset('/assets/js/admin/acara.js') }}"></script>
+<script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 @endsection 
