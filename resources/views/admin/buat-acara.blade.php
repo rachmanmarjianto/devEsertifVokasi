@@ -90,7 +90,7 @@
 
                                 <div class="form-group">
                                     <label>File Sertifikat</label>
-                                    <input type="file" class="form-control-file">
+                                    <input type="file" class="form-control-file" name="file_sertif" required accept=".jpg,.jpeg">
                                 </div>
 
                                 <div class="form-group">
