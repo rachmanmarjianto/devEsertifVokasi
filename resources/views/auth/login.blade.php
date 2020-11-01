@@ -45,19 +45,7 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password here" required>
                                         </div>
-                                        <div class="form-row mb-3">
-                                            <div class="col-sm-6">
-                                                <div class="custom-control custom-checkbox text-left">
-                                                  <input type="checkbox" class="custom-control-input" id="rememberme">
-                                                  <label class="custom-control-label font-14" for="rememberme">Remember Me</label>
-                                                </div>                                
-                                            </div>
-                                            <div class="col-sm-6">
-                                              <div class="forgot-psw"> 
-                                                <a id="forgot-psw" href="user-forgotpsw.html" class="font-14">Forgot Password?</a>
-                                              </div>
-                                            </div>
-                                        </div>                          
+                                                             
                                       <button type="submit" class="btn btn-success btn-lg btn-block font-18">Log in</button>
                                     </form>
                                 </div>

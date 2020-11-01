@@ -40,4 +40,15 @@ class HomeController extends Controller
 
         return redirect('login');
     }
+
+    public function changepass(Request $req){
+
+        $id = Auth::user()->username;
+
+        $user = User::find($id);
+        $user->password = bcrypt($req->new_password);
+        $user->save();
+
+        return redirect('/');
+    }
 }
