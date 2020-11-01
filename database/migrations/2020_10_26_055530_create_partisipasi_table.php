@@ -16,6 +16,7 @@ class CreatePartisipasiTable extends Migration
         Schema::create('partisipasi', function (Blueprint $table) {
             $table->integer('ID_PARTISIPASI', true);
             $table->string('PARTISIPASI', 100);
+            $table->integer('ID_JENIS_KEGIATAN')->index('MERUPAKAN_FK');
         });
     }
 
