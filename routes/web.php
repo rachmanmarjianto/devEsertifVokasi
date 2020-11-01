@@ -14,6 +14,8 @@ Route::post('/change-pass', 'HomeController@changepass')->middleware('auth');
 Route::get('/admin-acara', 'Admin\AcaraController@index')->middleware('auth')->name('admin-acara');
 Route::get('/admin/buat-acara', 'Admin\AcaraController@buat_acara')->middleware('auth');
 Route::get('/admin/detail-acara', 'Admin\AcaraController@detail_acara')->middleware('auth');
+Route::post('/admin/req-data-jenis-kegiatan', 'Admin\AcaraController@req_data_jenis_kegiatan')->middleware('auth');
+Route::post('/admin/buat-acara', 'Admin\AcaraController@store_acara')->middleware('auth');
 
 Route::get('/mahasiswa-acara', function () {
     return view('mahasiswa.acara');
