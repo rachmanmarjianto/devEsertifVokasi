@@ -55,17 +55,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($acara as $acara)
                                 <tr>
-                                    <td>1</td>
-                                    <td>10/10/2020</td>
-                                    <td>Webinar Web App</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $acara->TANGGAL_PENYELENGGARAAN }}</td>
+                                    <td>{{ $acara->NAMA_ACARA }}</td>
                                     <td class="aksi">
-                                        <a href="{{ url('/admin/detail-acara') }}" class="btn btn-sm btn-info">
+                                        <a href="{{ url('/admin/detail-acara').'/'.$acara->ID_ACARA }}" class="btn btn-sm btn-info">
                                             <i class="fas fa-info-circle mr-2"></i>
                                             DETAIL
                                         </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

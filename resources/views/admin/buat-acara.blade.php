@@ -72,7 +72,7 @@
                                 <div class="form-group">
                                     <label>Kelompok Kegiatan</label>
                                     <select class="form-control" name="input_kelompok_kegiatan" id="input_kelompok_kegiatan">
-                                        <option>----------</option>
+                                        <option value="-">----------</option>
                                         @foreach ($kelompok_kegiatan as $kelompok_kegiatan)
                                             <option value="{{ $kelompok_kegiatan->ID_KELOMPOK_KEGIATAN }}">{{ $kelompok_kegiatan->KELOMPOK_KEGIATAN }}</option>
                                         @endforeach
@@ -82,14 +82,14 @@
                                 <div class="form-group">
                                     <label>Jenis Kegiatan</label>
                                     <select class="form-control" name="input_jenis_kegiatan" id="input_jenis_kegiatan">
-                                        <option>----------</option>
+                                        <option value="-">----------</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tingkat</label>
                                     <select class="form-control" name="input_tingkat" id="input_tingkat">
-                                        <option>----------</option>
+                                        <option value="-">----------</option>
                                     </select>
                                 </div>
 
