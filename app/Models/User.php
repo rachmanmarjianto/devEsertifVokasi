@@ -43,7 +43,8 @@ class User extends Authenticatable
 		'ID_TIPE_USER',
 		'password',
 		'username',
-		'STATUS'
+		'STATUS',
+		'NAMA_USER'
 	];
 
 	public function tipe_user()

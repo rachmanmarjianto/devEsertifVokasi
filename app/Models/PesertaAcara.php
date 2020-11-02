@@ -35,7 +35,9 @@ class PesertaAcara extends Model
 
 	protected $fillable = [
 		'ID_PARTISIPASI',
-		'DIGITAL_SIGNATURE'
+		'ID_ACARA',
+		'DIGITAL_SIGNATURE',
+		'USERNAME',
 	];
 
 	public function user()

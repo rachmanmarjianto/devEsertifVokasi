@@ -42,6 +42,9 @@
 
                     <div class="row">
                         <div class="col-md-10 col-sm-12 m-auto">
+                            @if($errors->any())
+                            <div class="alert alert-danger">{{$errors->first()}}</div>
+                            @endif
                             <form action="{{ url('/admin/buat-acara') }}" method="post" enctype="multipart/form-data">
                                 @csrf
 

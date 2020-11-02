@@ -39,3 +39,30 @@ $(document).on("click",".editing",function(){
 	$("#edit-btn").removeClass("editing");
 	$("#edit-btn").addClass("not-editing");
 });
+
+$(document).on("click",".update-btn",function(){
+
+    index = $(this).attr('id').substring(7);
+    datamerged = {
+    	'nim' : $("#nim-"+index+" input").val(),
+    	'nama' : $("#nama-"+index+" input").val(),
+    	'id_partisipasi' : $("select#partisipasi-"+index).val(),
+    };
+    url = APP_URL+"/update/"+id_acara;
+
+    $.post(url, { '_token' : token,'data' : datamerged }, function(results) {
+        if(results){
+            $("#read-table tbody tr td#nim-"+index).html(results.data.nim);
+            $("#read-table tbody tr td#nama-"+index).html(results.data.nama);
+            $("#read-table tbody tr td#partisipasi-"+index).html(results.data.partisipasi);
+        }
+    });
+
+});
+
+$(document).on("change","select.partisipasi",function(){
+
+    index = $(this).attr('id').substring(12);
+    $("#read-table tbody tr td#partisipasi-"+index).html($(this).html());
+
+});
