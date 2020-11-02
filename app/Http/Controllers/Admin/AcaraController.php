@@ -68,7 +68,9 @@ class AcaraController extends Controller
 
         $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
-        if($headings[0] == "NIM" && $headings[1] == "Nama" && $headings[3] == "Partisipasi"){
+        $headings = $headings[0][0];
+
+        if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
             // Insert DB
             DB::table('acara')->insert([
                 'ID_TEMPLATE' => $request->input_template,
@@ -101,7 +103,13 @@ class AcaraController extends Controller
 
             for($i=0;$i<count($partisipan[0]);$i++){
                 $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
-                $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+
+                if ($id_partisipasi != null) {
+                    $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+                }
+                else{
+                    $partisipan[0][$i]["id_partisipasi"] = null;
+                }
 
                 //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
                 if(!User::where('username', $partisipan[0][$i]['nim'])->exists()){
@@ -115,9 +123,9 @@ class AcaraController extends Controller
                 }
 
                 //mengubah atau menambahkan peserta acara
-                PesertaAcara::insertOrIgnore([
+                PesertaAcara::insert([
                     'USERNAME' =>  $partisipan[0][$i]['nim'],
-                    'ID_ACARA' =>  $id,
+                    'ID_ACARA' =>  $acara->id_acara,
                     'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
                 ]);
             }
