@@ -48,7 +48,7 @@
                             <label>Nama Acara</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; Webinar Web Dev</h6>
+                            <h6>: &nbsp; {{ $nama_acara }}</h6>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                             <label>Tanggal Penyelenggaraan</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; 10/10/2020</h6>
+                            <h6>: &nbsp; {{ $tanggal_penyelenggaraan }}</h6>
                         </div>
                     </div>
 
@@ -66,7 +66,7 @@
                             <label>Penyelenggara</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; HIMASI</h6>
+                            <h6>: &nbsp; {{ $penyelenggara }}</h6>
                         </div>
                     </div>
 
@@ -75,7 +75,7 @@
                             <label>Tahun Akademik</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; 2020/2021 - Ganjil</h6>
+                            <h6>: &nbsp; {{ $tahun_akademik }}</h6>
                         </div>
                     </div>
 
@@ -84,7 +84,7 @@
                             <label>Kelompok Kegiatan</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; lorem ipsum</h6>
+                            <h6>: &nbsp; {{ $kelompok_kegiatan }}</h6>
                         </div>
                     </div>
 
@@ -93,7 +93,7 @@
                             <label>Jenis Kegiatan</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; lorem ipsum</h6>
+                            <h6>: &nbsp; {{ $jenis_kegiatan }}</h6>
                         </div>
                     </div>
 
@@ -102,7 +102,7 @@
                             <label>Tingkat</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; lorem ipsum</h6>
+                            <h6>: &nbsp; {{ $tingkat }}</h6>
                         </div>
                     </div>
 
@@ -111,16 +111,16 @@
                             <label>File Sertifikat</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; lorem ipsum</h6>
+                            <h6>: &nbsp; {{ $file_sertif }}</h6>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
-                            <label>File Data Peserta</label>
+                            <label>File Daftar Partisipan</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; lorem ipsum</h6>
+                            <h6>: &nbsp; {{ $file_nama }}</h6>
                         </div>
                     </div>
 
