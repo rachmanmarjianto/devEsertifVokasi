@@ -139,7 +139,7 @@
                 <div class="card-body">
 
                     <div class="table-responsive" id="read-table-container">
-                        <table class="table table-striped table-bordered datatable-table">
+                        <table class="table table-striped table-bordered datatable-table" id="read-table">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>No.</th>
@@ -149,12 +149,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="peserta-151811513000">
-                                    <td id="nomor-151811513000">1</td>
-                                    <td id="nim-151811513000">151811513000</td>
-                                    <td id="nama-151811513000">Andrico Cahyadi</td>
-                                    <td id="partisipasi-151811513000">Panitia</td>
+                                @foreach($partisipan as $d)
+                                <tr id="peserta-{{ $loop->index }}">
+                                    <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
+                                    <td id="nim-{{ $loop->index }}">{{ $d->USERNAME }}</td>
+                                    <td id="nama-{{ $loop->index }}">{{ $d->user->NAMA_USER }}</td>
+                                    <td id="partisipasi-{{ $loop->index }}">
+                                        @if($d->ID_PARTISIPASI != NULL)
+                                        {{ $d->partisipasi->PARTISIPASI }}
+                                        @else
+                                        -
+                                        @endif
+                                    </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -167,24 +175,43 @@
                                     <th>NIM</th>
                                     <th>Nama</th>
                                     <th>Partisipasi</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr id="peserta-151811513000">
-                                    <td id="nomor-151811513000">1</td>
-                                    <td id="nim-151811513000">
-                                        <input class="form-control" type="number" name="nim[]" required value="151811513000">
+                                @foreach($partisipan as $d)
+                                <tr id="peserta-{{ $loop->index }}">
+                                    <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
+                                    <td id="nim-{{ $loop->index }}">
+                                        <input class="form-control" type="number" name="nim[]" required value="{{ $d->USERNAME }}" readonly>
                                     </td>
-                                    <td id="nama-151811513000">
-                                        <input class="form-control" type="text" name="nama[]" required value="Andrico Cahyadi">
+                                    <td id="nama-{{ $loop->index }}">
+                                        <input class="form-control" type="text" name="nama[]" required value="{{ $d->user->NAMA_USER }}" readonly>
                                     </td>
-                                    <td id="partisipasi-151811513000">
-                                        <select class="form-control" name="partisipasi[]" required>
-                                            <option value="1">Panitia</option>
-                                            <option value="2">Peserta</option>
+                                    <td>
+                                        
+                                        <select class="form-control partisipasi" name="partisipasi[]" required id="partisipasi-{{ $loop->index }}">
+                                            @if($d->ID_PARTISIPASI == NULL || $d->ID_PARTISIPASI == '')
+                                            <option disabled selected>Pilih Partisipasi</option>
+                                            @endif
+                                            @foreach($partisipasi as $p)
+                                                @if($d->ID_PARTISIPASI != NULL && $p->ID_PARTISIPASI == $d->ID_PARTISIPASI)
+                                                <option value="{{$p->ID_PARTISIPASI}}" selected>{{$p->PARTISIPASI}}</option>
+                                                @else
+                                                <option value="{{$p->ID_PARTISIPASI}}">{{$p->PARTISIPASI}}</option>
+                                                @endif
+                                            @endforeach
                                         </select>
+                                        
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-warning text-dark update-btn" id="update-{{ $loop->index }}">
+                                            <i class="fas fa-save mr-2"></i>
+                                            UPDATE
+                                        </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -230,5 +257,11 @@
 <!-- Datatable js -->
 <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script type="text/javascript">
+    var data_peserta = <?php echo json_encode($partisipan[0]); ?>;
+    var id_acara = <?php echo $id_acara; ?>;
+    var APP_URL = "<?php echo url('/'); ?>";
+    var token = " {{ csrf_token() }}";
+</script>
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 @endsection 

@@ -5,6 +5,15 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Acara;
+use App\Models\User;
+use App\Models\PesertaAcara;
+use App\Models\Partisipasi;
+use App\Imports\PartisipanImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\HeadingRowImport;
+use Redirect;
+use Input;
 
 class AcaraController extends Controller
 {
@@ -57,20 +66,67 @@ class AcaraController extends Controller
         $file_sertif->move('storage/sertifikat', $nama_file_sertif);
         $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
 
-        // Insert DB
-        DB::table('acara')->insert([
-            'ID_TEMPLATE' => $request->input_template,
-            'ID_TINGKAT' => $request->input_tingkat,
-            'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
-            'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
-            'NAMA_ACARA' => $request->input_nama_acara,
-            'PENYELENGGARA' => $request->input_penyelenggara,
-            'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
-            'FILE_SERTIF' => $path_sertif,
-            'FILE_NAMA' => $path_daftar_partisipan
-        ]);
+        $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
-        return redirect('/admin-acara');
+        if($headings[0] == "NIM" && $headings[1] == "Nama" && $headings[3] == "Partisipasi"){
+            // Insert DB
+            DB::table('acara')->insert([
+                'ID_TEMPLATE' => $request->input_template,
+                'ID_TINGKAT' => $request->input_tingkat,
+                'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
+                'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
+                'NAMA_ACARA' => $request->input_nama_acara,
+                'PENYELENGGARA' => $request->input_penyelenggara,
+                'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
+                'FILE_SERTIF' => $path_sertif,
+                'FILE_NAMA' => $path_daftar_partisipan
+            ]);
+
+            //ambil id acara
+            $acara = Acara::select('id_acara')->where([
+                'ID_TEMPLATE' => $request->input_template,
+                'ID_TINGKAT' => $request->input_tingkat,
+                'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
+                'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
+                'NAMA_ACARA' => $request->input_nama_acara,
+                'PENYELENGGARA' => $request->input_penyelenggara,
+                'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
+                'FILE_SERTIF' => $path_sertif,
+                'FILE_NAMA' => $path_daftar_partisipan
+            ])->first();
+
+            $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
+
+            $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
+
+            for($i=0;$i<count($partisipan[0]);$i++){
+                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+                $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+
+                //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
+                if(!User::where('username', $partisipan[0][$i]['nim'])->exists()){
+                    User::create([
+                        'username' => $partisipan[0][$i]['nim'],
+                        'NAMA_USER' => $partisipan[0][$i]['nama'],
+                        'password' => bcrypt($partisipan[0][$i]['nim']),
+                        'ID_TIPE_USER' => 2,
+                        'STATUS' => 1
+                    ]);
+                }
+
+                //mengubah atau menambahkan peserta acara
+                PesertaAcara::insertOrIgnore([
+                    'USERNAME' =>  $partisipan[0][$i]['nim'],
+                    'ID_ACARA' =>  $id,
+                    'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
+                ]);
+            }
+        }
+        else{
+            return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
+        }
+
+        return redirect('/admin/detail-acara/'.$acara->id_acara);
 
     }
 
@@ -100,7 +156,11 @@ class AcaraController extends Controller
         
         $id_tingkat = DB::table('acara')->where('ID_ACARA', $id)->value('ID_TINGKAT');
         $tingkat = DB::table('tingkat')->where('ID_TINGKAT', $id_tingkat)->value('TINGKAT');
-        
+
+        $partisipan = PesertaAcara::where('id_acara',$id)->get();
+
+        $partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$id_jenis_kegiatan)->get();     
+
         return view('admin.detail-acara', compact([
             'id_acara',
             'nama_acara',
@@ -111,7 +171,9 @@ class AcaraController extends Controller
             'jenis_kegiatan',
             'tingkat',
             'file_sertif',
-            'file_nama'
+            'file_nama',
+            'partisipan',
+            'partisipasi'
         ]));
     }
 
@@ -128,6 +190,42 @@ class AcaraController extends Controller
         Storage::disk('local')->put('sertifikat/'.$request->nama_acara, $request->file_sertif);
         $path = 'storage/sertifikat/'.$request->nama_acara.$request->file('file_sertif')->extension();
 
+    }
+
+    public function update_peserta(Request $request,$id)
+    {
+        $data = $request->data;
+
+        $count=0;
+
+        //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
+        if(!User::where('username', $data['nim'])->exists()){
+            User::create([
+                'username' => $data['nim'],
+                'NAMA_USER' => $data['nama'],
+                'password' => bcrypt($data['nim']),
+                'ID_TIPE_USER' => 2,
+                'STATUS' => 1
+            ]);
+            $count++;
+        }
+
+        $peserta = PesertaAcara::where([
+            'USERNAME' =>  $data['nim'],
+            'ID_ACARA' =>  $id,
+        ]);
+
+        //mengubah atau menambahkan peserta acara
+        $peserta->update([
+            'USERNAME' =>  $data['nim'],
+            'ID_ACARA' =>  $id,
+            'ID_PARTISIPASI'  => $data['id_partisipasi']
+        ]);
+
+        //mengambil nama partisipasi untuk ditambilkan di tabel read peserta
+        $data['partisipasi'] = Partisipasi::where('ID_PARTISIPASI',$data['id_partisipasi'])->value('PARTISIPASI');
+
+        return response()->json(["results" => true, "data" => $data, "count" => $count]);
     }
 
 }
