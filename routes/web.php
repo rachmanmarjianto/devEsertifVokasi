@@ -20,11 +20,8 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/admin/detail-acara/{id}', 'Admin\AcaraController@detail_acara');
 	Route::post('/admin/req-data-jenis-kegiatan', 'Admin\AcaraController@req_data_jenis_kegiatan');
 	Route::post('/admin/buat-acara', 'Admin\AcaraController@store_acara');
-
-	Route::get('/mahasiswa-acara', function () {
-	    return view('mahasiswa.acara');
-	})->name('mahasiswa-acara');
-
 	Route::post('/update/{id}', 'Admin\AcaraController@update_peserta');
+
+	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
 
 });

@@ -152,7 +152,7 @@
                                 @foreach($partisipan as $d)
                                 <tr id="peserta-{{ $loop->index }}">
                                     <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
-                                    <td id="nim-{{ $loop->index }}">{{ $d->USERNAME }}</td>
+                                    <td id="nim-{{ $loop->index }}">{{ $d->nim }}</td>
                                     <td id="nama-{{ $loop->index }}">{{ $d->user->NAMA_USER }}</td>
                                     <td id="partisipasi-{{ $loop->index }}">
                                         @if($d->ID_PARTISIPASI != NULL)
@@ -183,7 +183,7 @@
                                 <tr id="peserta-{{ $loop->index }}">
                                     <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
                                     <td id="nim-{{ $loop->index }}">
-                                        <input class="form-control" type="number" name="nim[]" required value="{{ $d->USERNAME }}" readonly>
+                                        <input class="form-control" type="number" name="nim[]" required value="{{ $d->nim }}" readonly>
                                     </td>
                                     <td id="nama-{{ $loop->index }}">
                                         <input class="form-control" type="text" name="nama[]" required value="{{ $d->user->NAMA_USER }}" readonly>

@@ -37,12 +37,12 @@ class PesertaAcara extends Model
 		'ID_PARTISIPASI',
 		'ID_ACARA',
 		'DIGITAL_SIGNATURE',
-		'USERNAME',
+		'NIM',
 	];
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'USERNAME');
+		return $this->belongsTo(User::class, 'nim');
 	}
 
 	public function acara()

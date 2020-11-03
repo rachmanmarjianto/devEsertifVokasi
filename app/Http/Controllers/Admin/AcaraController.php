@@ -112,9 +112,9 @@ class AcaraController extends Controller
                 }
 
                 //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
-                if(!User::where('username', $partisipan[0][$i]['nim'])->exists()){
+                if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
                     User::create([
-                        'username' => $partisipan[0][$i]['nim'],
+                        'nim' => $partisipan[0][$i]['nim'],
                         'NAMA_USER' => $partisipan[0][$i]['nama'],
                         'password' => bcrypt($partisipan[0][$i]['nim']),
                         'ID_TIPE_USER' => 2,
@@ -124,7 +124,7 @@ class AcaraController extends Controller
 
                 //mengubah atau menambahkan peserta acara
                 PesertaAcara::insert([
-                    'USERNAME' =>  $partisipan[0][$i]['nim'],
+                    'NIM' =>  $partisipan[0][$i]['nim'],
                     'ID_ACARA' =>  $acara->id_acara,
                     'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
                 ]);
@@ -207,9 +207,9 @@ class AcaraController extends Controller
         $count=0;
 
         //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
-        if(!User::where('username', $data['nim'])->exists()){
+        if(!User::where('nim', $data['nim'])->exists()){
             User::create([
-                'username' => $data['nim'],
+                'nim' => $data['nim'],
                 'NAMA_USER' => $data['nama'],
                 'password' => bcrypt($data['nim']),
                 'ID_TIPE_USER' => 2,
@@ -219,13 +219,13 @@ class AcaraController extends Controller
         }
 
         $peserta = PesertaAcara::where([
-            'USERNAME' =>  $data['nim'],
+            'NIM' =>  $data['nim'],
             'ID_ACARA' =>  $id,
         ]);
 
         //mengubah atau menambahkan peserta acara
         $peserta->update([
-            'USERNAME' =>  $data['nim'],
+            'NIM' =>  $data['nim'],
             'ID_ACARA' =>  $id,
             'ID_PARTISIPASI'  => $data['id_partisipasi']
         ]);
