@@ -3,7 +3,7 @@ $(function () {
     // Pilih jenis kegiatan berdasarkan kelompok kegiatan
     $('#input_kelompok_kegiatan').on('change', function () {
 
-        if ( $(this).val() == null ) {
+        if ( $(this).val() == '-' ) {
             $('#input_jenis_kegiatan').empty();
             $('#input_jenis_kegiatan').append(new Option('----------', '-'));
             $('#input_tingkat').empty();
