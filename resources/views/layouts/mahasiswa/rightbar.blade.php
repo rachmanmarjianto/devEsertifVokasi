@@ -62,13 +62,13 @@
                                         <div class="userbox pr-4">
                                             <ul class="list-unstyled mb-0">
                                                 <li class="media dropdown-item">
-                                                    <a href="{{ url('/change-password') }}" class="profile-icon">
+                                                    <a href="{{ route('password/reset') }}" class="profile-icon">
                                                         <img src="{{ asset('/assets/images/svg-icon/authentication.svg') }}" class="img-fluid" alt="logout">
                                                         Change Password
                                                     </a>
                                                 </li>
                                                 <li class="media dropdown-item">
-                                                    <a href="{{ url('/logout') }}" class="profile-icon">
+                                                    <a href="{{ route('logout') }}" class="profile-icon">
                                                         <img src="{{ asset('/assets/images/svg-icon/logout.svg') }}" class="img-fluid" alt="logout">
                                                         Logout
                                                     </a>
