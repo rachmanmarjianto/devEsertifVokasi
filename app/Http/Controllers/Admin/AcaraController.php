@@ -253,7 +253,7 @@ class AcaraController extends Controller
         $acara = Acara::find($request->id_acara);
 
         $file_sertif = $request->file('file_sertif');
-        $nama_file_sertif = date('Y_m_d').'_'.$acara->NAMA_ACARA.".".$file_sertif->extension();
+        $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
         $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
 
         // Simpan file2 ke storage (public/storage/)
