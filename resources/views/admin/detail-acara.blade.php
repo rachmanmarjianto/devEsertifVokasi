@@ -244,7 +244,6 @@
                             </tbody>
                         </table>
                     </div> 
-                    <img src="{{asset('/template/preview_template_1.jpg')}}">
                 </div>
             </div>
         </div>
@@ -268,7 +267,7 @@
                 <h5 class="card-title">Pilih Template Yang Digunakan</h5>
                 <hr>
                 @foreach($template as $t)
-
+                <img src="{{asset('/template/preview_'.$t->NAMA_TEMPLATE.'.png')}}">
                 @endforeach
             </div>
 

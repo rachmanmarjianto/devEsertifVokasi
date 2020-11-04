@@ -9,12 +9,12 @@ use App\Models\Acara;
 use App\Models\User;
 use App\Models\PesertaAcara;
 use App\Models\Partisipasi;
+use App\Models\TemplateSertifikat;
 use App\Imports\PartisipanImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Redirect;
 use Input;
-use Spatie\PdfToImage\Pdf as Pdf;
 
 class AcaraController extends Controller
 {
@@ -172,9 +172,7 @@ class AcaraController extends Controller
         
         $status = PesertaAcara::where('id_acara',$id)->exists();
 
-        $pdf = new Pdf(public_path('/template/template_1.pdf'));
-
-        $pdf->setOutputFormat('jpg')->saveImage('/template/preview_template_1.jpg');
+        $template = TemplateSertifikat::all();
             
         return view('admin.detail-acara', compact([
             'id_acara',
@@ -190,7 +188,7 @@ class AcaraController extends Controller
             'partisipan',
             'partisipasi',
             'status',
-            'pdf'
+            'template'
         ]));
         
     }
@@ -245,5 +243,4 @@ class AcaraController extends Controller
 
         return response()->json(["results" => true, "data" => $data, "count" => $count]);
     }
-
 }
