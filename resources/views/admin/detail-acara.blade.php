@@ -51,6 +51,21 @@
 
                 <div class="card-body">
 
+                    <div class="row mb-3">
+                        <button class="btn btn-lg btn-warning text-dark ml-3 mr-3" id="">
+                            <i class="fas fa-pen mr-2"></i>
+                            EDIT
+                        </button>
+                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif">
+                            <i class="fas fa-upload mr-2"></i>
+                            Upload Sertifikat
+                        </button>
+                        <button class="btn btn-lg btn-warning text-dark" id="">
+                            <i class="fas fa-pen mr-2"></i>
+                            EDIT
+                        </button>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-3 col-sm-12">
                             <label>Nama Acara</label>
@@ -229,6 +244,7 @@
                             </tbody>
                         </table>
                     </div> 
+                    <img src="{{asset('/template/preview_template_1.jpg')}}">
                 </div>
             </div>
         </div>
@@ -237,19 +253,23 @@
 </div>
 <!-- End Contentbar -->
 
-<!-- {{-- Start Modal Edit Peserta --}}
-<div class="modal fade" id="modal-edit-peserta" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+{{-- Start Modal Upload Sertifikat --}}
+<div class="modal fade" id="modal-upload-sertif" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modal-form-lable">Edit Peserta</h5>
+                <h5 class="modal-title" id="modal-form-lable">Upload Sertifikat</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                <h5 class="card-title">Pilih Template Yang Digunakan</h5>
+                <hr>
+                @foreach($template as $t)
 
+                @endforeach
             </div>
 
             <div class="modal-footer">
@@ -263,7 +283,7 @@
         </div>
     </div>
 </div>
-{{-- End of Modal Edit Peserta --}} -->
+{{-- End of Modal Edit Peserta --}}
 
 @endsection 
 

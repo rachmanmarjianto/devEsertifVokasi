@@ -14,6 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Redirect;
 use Input;
+use Spatie\PdfToImage\Pdf as Pdf;
 
 class AcaraController extends Controller
 {
@@ -170,6 +171,10 @@ class AcaraController extends Controller
         $partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$id_jenis_kegiatan)->get();     
         
         $status = PesertaAcara::where('id_acara',$id)->exists();
+
+        $pdf = new Pdf(public_path('/template/template_1.pdf'));
+
+        $pdf->setOutputFormat('jpg')->saveImage('/template/preview_template_1.jpg');
             
         return view('admin.detail-acara', compact([
             'id_acara',
@@ -184,7 +189,8 @@ class AcaraController extends Controller
             'file_nama',
             'partisipan',
             'partisipasi',
-            'status'
+            'status',
+            'pdf'
         ]));
         
     }
