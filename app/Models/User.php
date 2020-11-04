@@ -26,7 +26,7 @@ class User extends Authenticatable
 {
 	use Notifiable;
 	protected $table = 'user';
-	protected $primaryKey = 'username';
+	protected $primaryKey = 'nim';
 	public $incrementing = false;
 	public $timestamps = false;
 
@@ -42,7 +42,7 @@ class User extends Authenticatable
 	protected $fillable = [
 		'ID_TIPE_USER',
 		'password',
-		'username',
+		'nim',
 		'STATUS',
 		'NAMA_USER'
 	];
@@ -54,6 +54,6 @@ class User extends Authenticatable
 
 	public function peserta_acaras()
 	{
-		return $this->hasMany(PesertaAcara::class, 'username');
+		return $this->hasMany(PesertaAcara::class, 'nim');
 	}
 }

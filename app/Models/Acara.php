@@ -49,7 +49,6 @@ class Acara extends Model
 	];
 
 	protected $dates = [
-		'TANGGAL_PENYELENGGARAAN',
 		'TIMESTAMP'
 	];
 

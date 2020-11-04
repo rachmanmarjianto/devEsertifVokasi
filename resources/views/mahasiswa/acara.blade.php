@@ -37,7 +37,33 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
-                        
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered datatable-table">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Tanggal</th>
+                                                <th>Nama Acara</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($acara as $acara)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $acara->acara->TANGGAL_PENYELENGGARAAN }}</td>
+                                                <td>{{ $acara->acara->NAMA_ACARA }}</td>
+                                                <td class="aksi">
+                                                    <a href="{{ url('/mahasiswa/cetak-sertifikat').'/'.$acara->acara->ID_ACARA }}" class="btn btn-sm btn-info">
+                                                        <i class="fas fa-print mr-2"></i>
+                                                        CETAK SERTIFIKAT
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -48,6 +74,6 @@
 @endsection 
 @section('script')
 <!-- Datatable js -->
-<!-- <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script> -->
-<!-- <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script> -->
+<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 @endsection 
