@@ -40,7 +40,7 @@
                                         </div>                                        
                                         <h4 class="text-primary my-4">Log in !</h4>
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username here" required>
+                                            <input type="text" class="form-control" name="nim" id="username" placeholder="Enter Username here" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password here" required>

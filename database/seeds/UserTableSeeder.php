@@ -24,7 +24,7 @@ class UserTableSeeder extends Seeder
                 'nim' => $username,
                 'ID_TIPE_USER' => 2,
                 'PASSWORD' => bcrypt(substr(str_replace(' ', '',strtolower($username)),0,20)),
-                'NAMA_USER' => $faker->firstName.$faker->lastName,
+                'NAMA_USER' => $faker->firstName." ".$faker->lastName,
                 'STATUS' => 1
             ]);
         }
