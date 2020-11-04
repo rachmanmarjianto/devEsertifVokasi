@@ -9,7 +9,7 @@
     <title>@yield('title')</title>
 
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/LogoUnair.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-unair-baru.png') }}">
 
     <!-- Start CSS -->   
         @yield('style')
