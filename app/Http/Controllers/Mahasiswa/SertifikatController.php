@@ -9,6 +9,7 @@ use App\Models\Acara;
 use App\Models\PesertaAcara;
 use Auth;
 use PDF;
+use DNS2D;
 
 class SertifikatController extends Controller
 {
@@ -29,11 +30,12 @@ class SertifikatController extends Controller
     {
     	$acara = Acara::find($id_acara);
     	$peserta = Auth::user()->nim;
-        $partisipasi = PesertaAcara::where(['ID_ACARA' => $acara->id_acara, 'NIM' => $peserta])->first();
-        $encrypted = $this->getEncrypted($peserta,$acara->id_acara);
+        $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $peserta])->first();
+        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($peserta,$acara->id_acara);
+        $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
     	$view = $acara->template_sertifikat->FILE_PHP;
 
-    	$pdf = PDF::loadView($view,compact("partisipasi","encrypted"));
-    	return $pdf->download('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta);
+    	$pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
+    	return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta.".pdf");
     }
 }
