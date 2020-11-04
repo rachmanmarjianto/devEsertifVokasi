@@ -129,10 +129,12 @@
                 <div class="card-header">
                     <div class="row justify-content-between mx-3">
                         <h5 class="card-title">Daftar Peserta</h5>
+                        @if($status)
                         <button class="btn btn-sm btn-warning text-dark not-editing" id="edit-btn">
                             <i class="fas fa-pen mr-2"></i>
                             EDIT
                         </button>
+                        @endif
                     </div>
                     
                 </div>
@@ -149,20 +151,22 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($partisipan as $d)
-                                <tr id="peserta-{{ $loop->index }}">
-                                    <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
-                                    <td id="nim-{{ $loop->index }}">{{ $d->nim }}</td>
-                                    <td id="nama-{{ $loop->index }}">{{ $d->user->NAMA_USER }}</td>
-                                    <td id="partisipasi-{{ $loop->index }}">
-                                        @if($d->ID_PARTISIPASI != NULL)
-                                        {{ $d->partisipasi->PARTISIPASI }}
-                                        @else
-                                        -
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
+                                @if($status)
+                                    @foreach($partisipan as $d)
+                                    <tr id="peserta-{{ $loop->index }}">
+                                        <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
+                                        <td id="nim-{{ $loop->index }}">{{ $d->NIM }}</td>
+                                        <td id="nama-{{ $loop->index }}">{{ $d->user->NAMA_USER }}</td>
+                                        <td id="partisipasi-{{ $loop->index }}">
+                                            @if($d->ID_PARTISIPASI != NULL)
+                                            {{ $d->partisipasi->PARTISIPASI }}
+                                            @else
+                                            -
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -179,11 +183,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if($status)
                                 @foreach($partisipan as $d)
                                 <tr id="peserta-{{ $loop->index }}">
                                     <td id="nomor-{{ $loop->index }}">{{ $loop->iteration }}</td>
                                     <td id="nim-{{ $loop->index }}">
-                                        <input class="form-control" type="text" name="nim[]" required value="{{ $d->nim }}" readonly>
+                                        <input class="form-control" type="text" name="nim[]" required value="{{ $d->NIM }}" readonly>
                                     </td>
                                     <td id="nama-{{ $loop->index }}">
                                         <input class="form-control" type="text" name="nama[]" required value="{{ $d->user->NAMA_USER }}" readonly>
@@ -212,6 +217,7 @@
                                     </td>
                                 </tr>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -258,10 +264,13 @@
 <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
 <script type="text/javascript">
-    var data_peserta = <?php echo json_encode($partisipan[0]); ?>;
+    var data_peserta;
     var id_acara = <?php echo $id_acara; ?>;
     var APP_URL = "<?php echo url('/'); ?>";
     var token = " {{ csrf_token() }}";
 </script>
+@if($status)
+data_peserta = <?php echo json_encode($partisipan[0]); ?>;
+@endif
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 @endsection 

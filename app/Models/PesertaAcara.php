@@ -42,7 +42,7 @@ class PesertaAcara extends Model
 
 	public function user()
 	{
-		return $this->belongsTo(User::class, 'nim');
+		return $this->belongsTo(User::class, 'NIM');
 	}
 
 	public function acara()
