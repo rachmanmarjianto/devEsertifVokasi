@@ -20,28 +20,28 @@ class PesertaAcaraTableSeeder extends Seeder
             0 => 
             array (
                 'NIM' => 151811513001,
-                'ID_ACARA' => 1,
+                'ID_ACARA' => 2,
                 'ID_PARTISIPASI' => 18,
                 'DIGITAL_SIGNATURE' => NULL,
             ),
             1 => 
             array (
                 'NIM' => 151811513002,
-                'ID_ACARA' => 1,
+                'ID_ACARA' => 2,
                 'ID_PARTISIPASI' => 17,
                 'DIGITAL_SIGNATURE' => NULL,
             ),
             2 => 
             array (
                 'NIM' => 151811513003,
-                'ID_ACARA' => 1,
+                'ID_ACARA' => 2,
                 'ID_PARTISIPASI' => 17,
                 'DIGITAL_SIGNATURE' => NULL,
             ),
             3 => 
             array (
                 'NIM' => 151811513004,
-                'ID_ACARA' => 1,
+                'ID_ACARA' => 2,
                 'ID_PARTISIPASI' => 19,
                 'DIGITAL_SIGNATURE' => NULL,
             ),

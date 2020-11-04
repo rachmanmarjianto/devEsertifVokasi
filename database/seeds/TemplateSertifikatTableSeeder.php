@@ -24,6 +24,20 @@ class TemplateSertifikatTableSeeder extends Seeder
                 'FILE_TEMPLATE' => 'sdgsdgsdg',
                 'FILE_PHP' => 'sdgsdgdsg',
             ),
+            1 => 
+            array (
+                'ID_TEMPLATE' => 2,
+                'NAMA_TEMPLATE' => 'Template 2',
+                'FILE_TEMPLATE' => '/template/template_2.pdf',
+                'FILE_PHP' => 'sertifikat.template_2',
+            ),
+            2 => 
+            array (
+                'ID_TEMPLATE' => 3,
+                'NAMA_TEMPLATE' => 'template_1',
+                'FILE_TEMPLATE' => 'sdgsdgsdg',
+                'FILE_PHP' => 'sdgsdgdsg',
+            ),
         ));
         
         

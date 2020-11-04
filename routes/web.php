@@ -23,10 +23,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/update/{id}', 'Admin\AcaraController@update_peserta');
 
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
+	Route::get('/mahasiswa/cetak-sertif/{id_acara}/{nim}', 'Mahasiswa\SertifikatController@cetakSertif');
 });
 
 //route untuk nyoba encrypt
-Route::get('/get-encrypt/{nim};{id_acara}', 'Mahasiswa\AcaraController@getEncrypted');
+Route::get('/get-encrypt/{nim};{id_acara}', 'Mahasiswa\SertifikatController@getEncrypted');
 
 //route untuk cek sertif
-Route::get('/cek-sertif/{encrypted}', 'Mahasiswa\AcaraController@getDecrypted');
+Route::get('/cek-sertif/{encrypted}', 'Mahasiswa\SertifikatController@getDecrypted');
