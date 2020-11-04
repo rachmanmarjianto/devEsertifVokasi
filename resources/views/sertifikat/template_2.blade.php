@@ -67,6 +67,22 @@
 		alignment-baseline: central;
 		padding: 10px;
 	}
+	#ttd-ketupel {
+		position: absolute;
+		width: 190 px;
+		height: 180 px; 
+		right: 193 px;
+		top: 565 px;
+		//150 595
+		font-family: 'Times New Roman';
+		font-size: 30px;
+		border-color: yellow;
+		background-color: white;
+		/*color: white;*/
+		text-align: center;
+		alignment-baseline: central;
+		padding: 10px;
+	}
 </style>
 <body>
 	<img src="{{ asset($acara->FILE_SERTIF) }}" width="100%">
@@ -74,5 +90,6 @@
 	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
 	<img src="{{ asset('/ttd/'.'dea.png') }}" id="ttd-dekan ">
+	<img src="{{ asset('/ttd/'.'dea.png') }}" id="ttd-ketupel">
 </body>
 </html>
