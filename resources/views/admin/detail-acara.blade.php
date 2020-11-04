@@ -264,7 +264,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/admin/upload-sertif') }}" method="post">
+            <form action="{{ url('/admin/upload-sertif') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
             <div class="modal-body">
@@ -280,9 +280,9 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-text mb-1 custom-radio-button">
-                                    <div class="form-check-inline radio-primary">
+                                    <div class="radio-primary ml-3">
                                       <input type="radio" id="{{$t->ID_TEMPLATE}}" class="form-control-file" name="template" class="radioTemplate" value="{{$t->ID_TEMPLATE}}">
-                                      <label for="{{$t->ID_TEMPLATE}}" class="pl-3">{{$t->NAMA_TEMPLATE}}</label>
+                                      <label for="{{$t->ID_TEMPLATE}}" class="pl-2">{{$t->NAMA_TEMPLATE}}</label>
                                     </div>
                                 </div>
                             </div>
