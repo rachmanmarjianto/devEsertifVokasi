@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\Acara;
+use App\Models\PesertaAcara;
 use Auth;
+use PDF;
 
 class SertifikatController extends Controller
 {
@@ -23,13 +25,15 @@ class SertifikatController extends Controller
     }
 
     //function buat cek sertif
-    public function cetakSertif($id_acara,$nim)
+    public function cetakSertif($id_acara)
     {
     	$acara = Acara::find($id_acara);
     	$peserta = Auth::user()->nim;
-    	$view = $acara->template_sertifikat()->FILE_PHP;
+        $partisipasi = PesertaAcara::where(['ID_ACARA' => $acara->id_acara, 'NIM' => $peserta])->first();
+        $encrypted = $this->getEncrypted($peserta,$acara->id_acara);
+    	$view = $acara->template_sertifikat->FILE_PHP;
 
-    	$pdf = PDF::loadView($view);
+    	$pdf = PDF::loadView($view,compact("partisipasi","encrypted"));
     	return $pdf->download('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta);
     }
 }

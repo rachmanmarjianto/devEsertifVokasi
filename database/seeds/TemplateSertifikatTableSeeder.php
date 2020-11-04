@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\PdfToImage\Pdf as Pdf;
+use Org_Heigl\Ghostscript\Ghostscript;
+use App\Models\TemplateSertifikat;
 
 class TemplateSertifikatTableSeeder extends Seeder
 {
@@ -21,7 +24,7 @@ class TemplateSertifikatTableSeeder extends Seeder
             array (
                 'ID_TEMPLATE' => 1,
                 'NAMA_TEMPLATE' => 'template_1',
-                'FILE_TEMPLATE' => 'sdgsdgsdg',
+                'FILE_TEMPLATE' => '/template/template_1.pdf',
                 'FILE_PHP' => 'sdgsdgdsg',
             ),
             1 => 
@@ -35,10 +38,20 @@ class TemplateSertifikatTableSeeder extends Seeder
             array (
                 'ID_TEMPLATE' => 3,
                 'NAMA_TEMPLATE' => 'template_1',
-                'FILE_TEMPLATE' => 'sdgsdgsdg',
+                'FILE_TEMPLATE' => '/template/template_3.pdf',
                 'FILE_PHP' => 'sdgsdgdsg',
             ),
         ));
+
+        Ghostscript::setGsPath('C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe');
+        $template = TemplateSertifikat::all();
+
+        foreach($template as $t){
+
+            $pdf = new Pdf(public_path($t->FILE_TEMPLATE));
+            $pdf->setOutputFormat('png')->saveImage(public_path('/template/preview_'.$t->NAMA_TEMPLATE.'.png'));
+
+        }
         
         
     }

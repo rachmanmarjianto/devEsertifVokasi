@@ -40,6 +40,7 @@ $(document).on("click",".editing",function(){
 	$("#edit-btn").addClass("not-editing");
 });
 
+//ketika button update di row diklik
 $(document).on("click",".update-btn",function(){
 
     index = $(this).attr('id').substring(7);
@@ -49,6 +50,41 @@ $(document).on("click",".update-btn",function(){
     	'id_partisipasi' : $("select#partisipasi-"+index).val(),
     };
     url = APP_URL+"/update/"+id_acara;
+    var notice = new PNotify();
+
+    $.ajaxSetup({
+	   beforeSend: function(){
+	   		console.log("before send");
+	   		notice.update({
+			    text: "Updating...",
+			    type: 'info',
+			    icon: 'fa fa-spinner fa-spin',
+			    hide: false,
+			    buttons: {
+			        closer: false,
+			        sticker: false
+			    },
+			    shadow: false,
+			    width: "170px"
+			});
+	   },
+	   complete: function(){
+	   	console.log("complete");
+	   	notice.update({
+            title: "Done!",
+            text: "Update berhasil!",
+            type:"success",
+            hide: true,
+            buttons: {
+	            closer: true,
+	            sticker: true
+	        },
+	        icon: 'fa fa-check',
+	        shadow: true,
+	        width: PNotify.prototype.options.width,
+        });
+	   }
+	});
 
     $.post(url, { '_token' : token,'data' : datamerged }, function(results) {
         if(results){
@@ -60,9 +96,14 @@ $(document).on("click",".update-btn",function(){
 
 });
 
+//update text di table read ketika partisipasi diganti
 $(document).on("change","select.partisipasi",function(){
-
     index = $(this).attr('id').substring(12);
     $("#read-table tbody tr td#partisipasi-"+index).html($(this).html());
+});
 
+$(document).on("click",".card-template",function(){
+	var id = $(this).attr('id').substring(5);
+	console.log("clicked"+id);
+	$("input#"+id).prop('checked',true);
 });
