@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title> @yield('title') </title>
         <!-- Favicon -->
-        <link rel="shortcut icon" href="{{ asset('/assets/images/LogoUnair.png') }}">
+        <link rel="shortcut icon" href="{{ asset('/assets/images/logo-unair-baru.png') }}">
         <!-- Start CSS -->   
         <link href="{{ asset('/assets/plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css">
         <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
