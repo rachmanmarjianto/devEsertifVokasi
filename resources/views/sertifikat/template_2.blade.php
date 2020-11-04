@@ -61,7 +61,7 @@
 		font-family: 'Times New Roman';
 		font-size: 30px;
 		border-color: yellow;
-		background-color: white;
+		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
@@ -77,7 +77,7 @@
 		font-family: 'Times New Roman';
 		font-size: 30px;
 		border-color: yellow;
-		background-color: white;
+		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
