@@ -46,7 +46,7 @@ class AcaraTableSeeder extends Seeder
                 'TIMESTAMP' => '2020-11-03 17:18:30',
                 'FILE_SERTIF' => '/storage/sertifikat/2020_11_03_WhatsApp Image 2020-10-25 at 18.24.00.jpeg',
                 'FILE_NAMA' => '/storage/excel/2020_11_03_contoh data nim, nama, partisipasi.xlsx',
-            )
+            ),
         ));
         
         
