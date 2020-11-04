@@ -6,7 +6,7 @@
             <div class="vertical-menu-icon">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <div class="logobar">
-                        <a href="{{url('/')}}" class="logo logo-small"><img src="{{asset('assets/images/logo-unair-baru.png')}}" class="img-fluid" style="height: 80%; width: 80%;" alt="logo"></a>
+                        <a href="{{url('/')}}" class="logo"><img src="{{asset('assets/images/logo-unair-baru.png')}}" class="img-fluid" style="height: 90%; width: 80%;" alt="logo"></a>
                     </div>
                     <!-- <a class="nav-link active" id="v-pills-crm-tab" data-toggle="pill" href="#v-pills-crm" role="tab" aria-controls="v-pills-crm" aria-selected="true"><img src="{{asset('assets/images/svg-icon/crm.svg')}}" class="img-fluid" alt="CRM" data-toggle="tooltip" data-placement="top" title="CRM"></a>
                     <a class="nav-link" id="v-pills-ecommerce-tab" data-toggle="pill" href="#v-pills-ecommerce" role="tab" aria-controls="v-pills-ecommerce" aria-selected="false"><img src="{{asset('assets/images/svg-icon/ecommerce.svg')}}" class="img-fluid" alt="eCommerce" data-toggle="tooltip" data-placement="top" title="eCommerce"></a>                            
@@ -17,14 +17,12 @@
             </div>
             <div class="vertical-menu-detail">
                 <div class="logobar">
-                    FAKULTAS VOKASI
+                    <h4 style="padding-top: 5%; margin-bottom: 0px">FAKULTAS VOKASI</h4>
                 </div>
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-crm" role="tabpanel" aria-labelledby="v-pills-crm-tab">
                         <ul class="vertical-menu">
-                            <!-- <li><h5 class="menu-title">CRM</h5></li>  -->
                             <li><a href="{{url('/')}}"><img src="{{asset('/assets/images/svg-icon/calender.svg')}}" class="img-fluid" alt="acara">Acara</a></li>
-                            <li><a href="{{url('/')}}"><img src="{{asset('/assets/images/svg-icon/pages.svg')}}" class="img-fluid" alt="template sertifikat">Template Sertifikat</a></li>
                         </ul>
                     </div>
                     
