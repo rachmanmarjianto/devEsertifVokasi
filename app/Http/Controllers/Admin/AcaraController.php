@@ -168,7 +168,9 @@ class AcaraController extends Controller
         $partisipan = PesertaAcara::where('id_acara',$id)->get();
 
         $partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$id_jenis_kegiatan)->get();     
-
+        
+        $status = PesertaAcara::where('id_acara',$id)->exists();
+            
         return view('admin.detail-acara', compact([
             'id_acara',
             'nama_acara',
@@ -181,8 +183,10 @@ class AcaraController extends Controller
             'file_sertif',
             'file_nama',
             'partisipan',
-            'partisipasi'
+            'partisipasi',
+            'status'
         ]));
+        
     }
 
     public function store_acara_backup(Request $request)
