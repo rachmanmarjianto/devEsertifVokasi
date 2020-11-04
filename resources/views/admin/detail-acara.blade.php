@@ -7,6 +7,14 @@
 <!-- Responsive Datatable css -->
 <link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/assets/css/admin/acara.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/plugins/pnotify/css/pnotify.custom.min.css') }}" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .ui-pnotify-title,
+    .ui-pnotify-text,
+    .ui-pnotify-icon span{
+      color: #FFF;
+    }
+</style>
 @endsection
 
 @section('rightbar-content')
@@ -220,8 +228,7 @@
                                 @endif
                             </tbody>
                         </table>
-                    </div>
-
+                    </div> 
                 </div>
             </div>
         </div>
@@ -257,13 +264,16 @@
     </div>
 </div>
 {{-- End of Modal Edit Peserta --}} -->
+
 @endsection 
 
 @section('script')
 <!-- Datatable js -->
 <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/pnotify/js/pnotify.custom.min.js') }}"></script>
 <script type="text/javascript">
+    "use strict";
     var data_peserta;
     var id_acara = <?php echo $id_acara; ?>;
     var APP_URL = "<?php echo url('/'); ?>";
