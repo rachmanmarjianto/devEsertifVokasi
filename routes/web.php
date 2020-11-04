@@ -24,6 +24,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
 	Route::get('/mahasiswa/cetak-sertif/{id_acara}/{nim}', 'Mahasiswa\SertifikatController@cetakSertif');
+	Route::post('/admin/upload-sertif', 'Admin\AcaraController@storeSertif');
 });
 
 //route untuk nyoba encrypt
@@ -31,3 +32,7 @@ Route::get('/get-encrypt/{nim};{id_acara}', 'Mahasiswa\SertifikatController@getE
 
 //route untuk cek sertif
 Route::get('/cek-sertif/{encrypted}', 'Mahasiswa\SertifikatController@getDecrypted');
+
+Route::get('coba',function(){
+	return view('basic-ui-kits-carousel');
+});

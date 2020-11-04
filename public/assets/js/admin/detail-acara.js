@@ -101,3 +101,9 @@ $(document).on("change","select.partisipasi",function(){
     index = $(this).attr('id').substring(12);
     $("#read-table tbody tr td#partisipasi-"+index).html($(this).html());
 });
+
+$(document).on("click",".card-template",function(){
+	var id = $(this).attr('id').substring(5);
+	console.log("clicked"+id);
+	$("input#"+id).prop('checked',true);
+});

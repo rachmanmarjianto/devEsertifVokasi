@@ -15,6 +15,7 @@
       color: #FFF;
     }
 </style>
+<link href="{{ asset('assets/plugins/dropzone/dist/dropzone.css') }}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('rightbar-content')
@@ -255,7 +256,7 @@
 {{-- Start Modal Upload Sertifikat --}}
 <div class="modal fade" id="modal-upload-sertif" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-lg modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-form-lable">Upload Sertifikat</h5>
@@ -263,22 +264,45 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form action="{{ url('/admin/upload-sertif') }}" method="post">
+                @csrf
+                <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
             <div class="modal-body">
                 <h5 class="card-title">Pilih Template Yang Digunakan</h5>
                 <hr>
-                @foreach($template as $t)
-                <img src="{{asset('/template/preview_'.$t->NAMA_TEMPLATE.'.png')}}">
-                @endforeach
+                
+                <div class="row overflow-auto justify-content-center">
+                    @foreach($template as $t)
+                    <div class="col-xl-3 p-3">
+                        <div class="card border-primary card-template" id="card-{{$t->ID_TEMPLATE}}">
+                            <div class="card-img-top p-2">
+                                <img src="{{asset('/template/preview_'.$t->NAMA_TEMPLATE.'.png')}}" class="img-fluid">
+                            </div>
+                            <div class="card-body">
+                                <div class="card-text mb-1 custom-radio-button">
+                                    <div class="form-check-inline radio-primary">
+                                      <input type="radio" id="{{$t->ID_TEMPLATE}}" class="form-control-file" name="template" class="radioTemplate" value="{{$t->ID_TEMPLATE}}">
+                                      <label for="{{$t->ID_TEMPLATE}}" class="pl-3">{{$t->NAMA_TEMPLATE}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <h5 class="card-title">Upload File Sertifikat</h5>
+                <hr>
+                <input type="file" required accept=".jpg,.jpeg,.png" name="file_sertif">
+                
             </div>
 
             <div class="modal-footer">
                 <button class="btn btn-sm btn-danger" data-dismiss="modal">
                     BATAL
                 </button>
-                <button class="btn btn-sm btn-primary">
-                    SIMPAN
-                </button>
+                <input type="submit" class="btn btn-sm btn-primary" value="SIMPAN">
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -302,4 +326,5 @@
 data_peserta = <?php echo json_encode($partisipan[0]); ?>;
 @endif
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
+<script src="{{ asset('assets/plugins/dropzone/dist/dropzone.js') }}"></script>
 @endsection 

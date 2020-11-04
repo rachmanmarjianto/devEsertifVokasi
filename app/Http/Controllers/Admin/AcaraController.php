@@ -50,7 +50,7 @@ class AcaraController extends Controller
         // dd($request->all());
 
         $request->validate([
-            'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg',
+            'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg,png',
             'file_daftar_partisipan' => 'required'
         ]);
           
@@ -99,8 +99,6 @@ class AcaraController extends Controller
             ])->first();
 
             $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
-
-            $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
             for($i=0;$i<count($partisipan[0]);$i++){
                 $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
@@ -242,5 +240,31 @@ class AcaraController extends Controller
         $data['partisipasi'] = Partisipasi::where('ID_PARTISIPASI',$data['id_partisipasi'])->value('PARTISIPASI');
 
         return response()->json(["results" => true, "data" => $data, "count" => $count]);
+    }
+
+    public function storeSertif(Request $request)
+    {
+        $request->validate([
+            'template' => 'required',
+            'id_acara' => 'required',
+            'file_sertif' => 'required|file|image|mimes:jpg,jpeg,png',
+        ]);
+
+        $acara = Acara::find($request->id_acara);
+
+        $file_sertif = $request->file('file_sertif');
+        $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
+        $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
+
+        // Simpan file2 ke storage (public/storage/)
+        $file_sertif->move('storage/sertifikat', $nama_file_sertif);
+
+        $acara->FILE_SERTIF = $path_sertif;
+        $acara->ID_TEMPLATE = $request->template;
+        $acara->save();
+
+        dd($request->all());
+
+        return redirect('/admin/detail-acara/'.$acara->id_acara);
     }
 }
