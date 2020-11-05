@@ -324,7 +324,7 @@ class AcaraController extends Controller
             $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
 
             for($i=0;$i<count($partisipan[0]);$i++){
-                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$acara->id_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
 
                 if ($id_partisipasi != null) {
                     $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;

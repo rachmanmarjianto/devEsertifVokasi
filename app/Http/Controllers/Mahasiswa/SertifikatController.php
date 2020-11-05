@@ -22,7 +22,25 @@ class SertifikatController extends Controller
     //decrypt dengan parameter encrypted string.
     public function getDecrypted($encrypted)
     {
-    	return Crypt::decryptString($encrypted);
+        $decrypt = Crypt::decryptString($encrypted);
+        
+        $data = explode(";", $decrypt);
+        $nim = $data[0];
+        $id_acara = $data[1];
+
+        if($nim != null && $id_acara != null){
+            if($partisipan = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $peserta])->first() != null){
+                $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($nim,$id_acara);
+                $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
+                $view = $acara->template_sertifikat->FILE_PHP;
+
+                $pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
+                return $pdf->stream($encrypted.".pdf");
+            }else{
+                // halaman data tidak ditemukan
+            }
+        }
+        
     }
 
     //function buat cek sertif

@@ -71,7 +71,8 @@
 		position: absolute;
 		width: 190 px;
 		height: 180 px; 
-		right: 193 px;
+		align: center;
+		left: 186 px;
 		top: 565 px;
 		//150 595
 		font-family: 'Times New Roman';
@@ -87,7 +88,7 @@
 		position: absolute;
 		width: 190 px;
 		height: 180 px; 
-		right: 193 px;
+		right: 100 px;
 		top: 565 px;
 		//150 595
 		font-family: 'Times New Roman';
@@ -105,8 +106,8 @@
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
 	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
-    <img src="{{ asset('/ttd/'.'dea.png') }}" id="ttd-dekan ">
-    <img src="{{ asset('/ttd/'.'ttdku.png') }}" id="ttd-kaprodi ">
+    <img src="{{ asset('/ttd/'.'dea.png') }}" id="ttd-dekan">
+    <img src="{{ asset('/ttd/'.'ttdku.png') }}" id="ttd-kaprodi">
 	<img src="{{ asset('/ttd/'.'dea.png') }}" id="ttd-ketupel">
 </body>
 </html>
