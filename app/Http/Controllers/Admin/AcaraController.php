@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\PesertaAcara;
 use App\Models\Partisipasi;
 use App\Models\TemplateSertifikat;
+use App\Models\TahunAkademik;
 use App\Imports\PartisipanImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
@@ -37,6 +38,19 @@ class AcaraController extends Controller
         ]));
     }
 
+    public function edit_acara($id)
+    {
+        $tahun_akademik = DB::table('tahun_akademik')->orderBy('ID_TAHUN_AKADEMIK', 'desc')->get();
+        $kelompok_kegiatan = DB::table('kelompok_kegiatan')->get();
+        $data = Acara::select('*')->where('ID_ACARA', '=', $id)->get();
+        
+        return view('admin.edit-acara', compact([
+            'tahun_akademik',
+            'kelompok_kegiatan',
+            'data'
+        ]));
+    }
+
     public function req_data_jenis_kegiatan()
     {
         $id_kelompok_kegiatan = $_POST['id'];
@@ -49,92 +63,105 @@ class AcaraController extends Controller
         
         // dd($request->all());
 
-        $request->validate([
-            'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg,png',
-            'file_daftar_partisipan' => 'required'
-        ]);
+        // $request->validate([
+        //     'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg,png',
+        //     'file_daftar_partisipan' => 'required|file|mimes:xls,xlsx'
+        // ]);
           
-        $file_sertif = $request->file('file_sertif');
-        $file_daftar_partisipan = $request->file('file_daftar_partisipan');
+        // $file_sertif = $request->file('file_sertif');
+        // $file_daftar_partisipan = $request->file('file_daftar_partisipan');
 
-        $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
-        $nama_file_daftar_partisipan = date('Y_m_d').'_'.$file_daftar_partisipan->getClientOriginalName();
+        // $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
+        // $nama_file_daftar_partisipan = date('Y_m_d').'_'.$file_daftar_partisipan->getClientOriginalName();
 
-        $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
-        $path_daftar_partisipan = '/storage/excel/'.$nama_file_daftar_partisipan;
+        // $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
+        // $path_daftar_partisipan = '/storage/excel/'.$nama_file_daftar_partisipan;
 
         // Simpan file2 ke storage (public/storage/)
-        $file_sertif->move('storage/sertifikat', $nama_file_sertif);
-        $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
+        // $file_sertif->move('storage/sertifikat', $nama_file_sertif);
+        // $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
 
-        $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
+        // $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
-        $headings = $headings[0][0];
+        // $headings = $headings[0][0];
 
-        if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
+        // if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
             // Insert DB
             DB::table('acara')->insert([
-                'ID_TEMPLATE' => $request->input_template,
+                // 'ID_TEMPLATE' => $request->input_template,
                 'ID_TINGKAT' => $request->input_tingkat,
                 'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
                 'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
                 'NAMA_ACARA' => $request->input_nama_acara,
                 'PENYELENGGARA' => $request->input_penyelenggara,
                 'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
-                'FILE_SERTIF' => $path_sertif,
-                'FILE_NAMA' => $path_daftar_partisipan
+                // 'FILE_SERTIF' => $path_sertif,
+                // 'FILE_NAMA' => $path_daftar_partisipan
             ]);
 
             //ambil id acara
             $acara = Acara::select('id_acara')->where([
-                'ID_TEMPLATE' => $request->input_template,
+                // 'ID_TEMPLATE' => $request->input_template,
                 'ID_TINGKAT' => $request->input_tingkat,
                 'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
                 'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
                 'NAMA_ACARA' => $request->input_nama_acara,
                 'PENYELENGGARA' => $request->input_penyelenggara,
                 'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
-                'FILE_SERTIF' => $path_sertif,
-                'FILE_NAMA' => $path_daftar_partisipan
+                // 'FILE_SERTIF' => $path_sertif,
+                // 'FILE_NAMA' => $path_daftar_partisipan
             ])->first();
 
-            $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
+            // $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
 
-            for($i=0;$i<count($partisipan[0]);$i++){
-                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+            // for($i=0;$i<count($partisipan[0]);$i++){
+            //     $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
 
-                if ($id_partisipasi != null) {
-                    $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
-                }
-                else{
-                    $partisipan[0][$i]["id_partisipasi"] = null;
-                }
+            //     if ($id_partisipasi != null) {
+            //         $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+            //     }
+            //     else{
+            //         $partisipan[0][$i]["id_partisipasi"] = null;
+            //     }
 
-                //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
-                if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
-                    User::create([
-                        'nim' => $partisipan[0][$i]['nim'],
-                        'NAMA_USER' => $partisipan[0][$i]['nama'],
-                        'password' => bcrypt($partisipan[0][$i]['nim']),
-                        'ID_TIPE_USER' => 2,
-                        'STATUS' => 1
-                    ]);
-                }
+            //     //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
+            //     if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
+            //         User::create([
+            //             'nim' => $partisipan[0][$i]['nim'],
+            //             'NAMA_USER' => $partisipan[0][$i]['nama'],
+            //             'password' => bcrypt($partisipan[0][$i]['nim']),
+            //             'ID_TIPE_USER' => 2,
+            //             'STATUS' => 1
+            //         ]);
+            //     }
 
                 //mengubah atau menambahkan peserta acara
-                PesertaAcara::insert([
-                    'NIM' =>  $partisipan[0][$i]['nim'],
-                    'ID_ACARA' =>  $acara->id_acara,
-                    'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
-                ]);
-            }
-        }
-        else{
-            return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
-        }
+        //         PesertaAcara::insert([
+        //             'NIM' =>  $partisipan[0][$i]['nim'],
+        //             'ID_ACARA' =>  $acara->id_acara,
+        //             'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
+        //         ]);
+        //     }
+        // }
+        // else{
+        //     return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
+        // }
 
         return redirect('/admin/detail-acara/'.$acara->id_acara);
 
+    }
+
+    public function store_edit_acara(Request $request){
+        DB::table('acara')->where('ID_ACARA', '=', $request->id_acara)->update([
+            'ID_TINGKAT' => $request->input_tingkat,
+            'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
+            'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
+            'NAMA_ACARA' => $request->input_nama_acara,
+            'PENYELENGGARA' => $request->input_penyelenggara,
+            'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan
+        ]);
+
+        return redirect('/admin/detail-acara/'.$request->id_acara);
     }
 
     public function detail_acara($id)
@@ -264,6 +291,70 @@ class AcaraController extends Controller
         $acara->save();
 
         // dd($request->all());
+
+        return redirect('/admin/detail-acara/'.$request->id_acara);
+    }
+
+    public function storePartisipan(Request $request)
+    {
+        $request->validate([
+            'id_acara' => 'required',
+            'file_daftar_partisipan' => 'required|file|mimes:xls,xlsx',
+        ]);
+
+        $acara = Acara::find($request->id_acara);
+
+        $file_daftar_partisipan = $request->file('file_daftar_partisipan');
+        $nama_file_daftar_partisipan = date('Y_m_d').'_'.$file_daftar_partisipan->getClientOriginalName();
+        $path_daftar_partisipan = '/storage/excel/'.$nama_file_daftar_partisipan;
+
+        // Simpan file ke storage (public/storage/)
+        $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
+
+        // Insert DB
+        $acara->FILE_NAMA = $path_daftar_partisipan;
+        $acara->save();
+
+        $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
+
+        $headings = $headings[0][0];
+
+        if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
+
+            $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
+
+            for($i=0;$i<count($partisipan[0]);$i++){
+                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$request->input_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+
+                if ($id_partisipasi != null) {
+                    $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+                }
+                else{
+                    $partisipan[0][$i]["id_partisipasi"] = null;
+                }
+
+                //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
+                if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
+                    User::create([
+                        'nim' => $partisipan[0][$i]['nim'],
+                        'NAMA_USER' => $partisipan[0][$i]['nama'],
+                        'password' => bcrypt($partisipan[0][$i]['nim']),
+                        'ID_TIPE_USER' => 2,
+                        'STATUS' => 1
+                    ]);
+                }
+
+                //mengubah atau menambahkan peserta acara
+                PesertaAcara::insert([
+                    'NIM' =>  $partisipan[0][$i]['nim'],
+                    'ID_ACARA' =>  $request->id_acara,
+                    'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
+                ]);
+            }
+        }
+        else{
+            return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
+        }
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
     }
