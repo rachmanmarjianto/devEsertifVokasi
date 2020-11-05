@@ -49,21 +49,19 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card m-b-30">
-
                 <div class="card-body">
-
                     <div class="row mb-3">
-                        <button class="btn btn-lg btn-warning text-dark ml-3 mr-3" id="">
+                        <a href="{{ url('/admin/edit-acara').'/'.$id_acara }}"><button class="btn btn-lg btn-warning text-dark ml-3 mr-3" id="">
                             <i class="fas fa-pen mr-2"></i>
                             EDIT
-                        </button>
+                        </button></a>
                         <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif">
                             <i class="fas fa-upload mr-2"></i>
                             Upload Sertifikat
                         </button>
-                        <button class="btn btn-lg btn-warning text-dark" id="">
-                            <i class="fas fa-pen mr-2"></i>
-                            EDIT
+                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-partisipan">
+                            <i class="fas fa-upload mr-2"></i>
+                            Upload Partisipan
                         </button>
                     </div>
 
@@ -147,9 +145,15 @@
                             <h6>: &nbsp; {{ $file_nama }}</h6>
                         </div>
                     </div>
-
                 </div>
-
+            </div>
+        </div>
+    </div>
+    <!-- End row -->
+    <!-- Start row -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card m-b-30">
                 <div class="card-header">
                     <div class="row justify-content-between mx-3">
                         <h5 class="card-title">Daftar Peserta</h5>
@@ -160,10 +164,8 @@
                         </button>
                         @endif
                     </div>
-                    
                 </div>
                 <div class="card-body">
-
                     <div class="table-responsive" id="read-table-container">
                         <table class="table table-striped table-bordered datatable-table" id="read-table">
                             <thead class="thead-dark">
@@ -306,7 +308,40 @@
         </div>
     </div>
 </div>
-{{-- End of Modal Edit Peserta --}}
+{{-- End of Modal Upload Sertifikat --}}
+
+{{-- Start Modal Upload Partisipan --}}
+<div class="modal fade" id="modal-upload-partisipan" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-form-lable">Upload Partisipan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ url('/admin/upload-partisipan') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
+            <div class="modal-body">
+                <h5 class="card-title">Upload File</h5>
+                <hr>
+                <input type="file" required accept=".xls,.xlsx" name="file_daftar_partisipan">
+                <small class="form-text text-muted">Tipe dokumen: xls, xlsx</small>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                    BATAL
+                </button>
+                <input type="submit" class="btn btn-sm btn-primary" value="SIMPAN">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{-- End of Modal Upload Partisipan --}}
 
 @endsection 
 

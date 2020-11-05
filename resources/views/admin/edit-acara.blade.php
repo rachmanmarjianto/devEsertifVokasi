@@ -1,5 +1,5 @@
 @extends('layouts.admin.main')
-@section('title', 'Buat Acara') 
+@section('title', 'Edit Acara') 
 @section('style')
 
 @endsection
@@ -9,11 +9,11 @@
 <div class="breadcrumbbar">
     <div class="row align-items-center">
         <div class="col-md-8 col-lg-8">
-            <h4 class="page-title">Buat Acara</h4>
+            <h4 class="page-title">Edit Acara</h4>
             <div class="breadcrumb-list">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('admin-acara') }}">Acara</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Buat Acara</li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Acara</li>
                 </ol>
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="col-md-12">
             <div class="card m-b-30">
                 <div class="card-header">
-                    <h5 class="card-title">Buat Acara Baru</h5>
+                    <h5 class="card-title">Edit Acara</h5>
                 </div>
                 <div class="card-body">
 
@@ -45,27 +45,29 @@
                             @if($errors->any())
                             <div class="alert alert-danger">{{$errors->first()}}</div>
                             @endif
-                            <form action="{{ url('/admin/buat-acara') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/admin/edit-acara') }}" method="post" enctype="multipart/form-data">
                                 @csrf
-
+                                @foreach($data as $d)
+                                <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
                                 <div class="form-group">
                                     <label>Nama Acara</label>
-                                    <input type="text" name="input_nama_acara" class="form-control">
+                                    <input type="text" name="input_nama_acara" value="{{$d->NAMA_ACARA}}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tanggal Penyelenggaraan</label>
-                                    <input type="date" name="input_tanggal_penyelenggaraan" class="form-control">
+                                    <input type="date" name="input_tanggal_penyelenggaraan" value="{{$d->TANGGAL_PENYELENGGARAAN}}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Penyelenggara</label>
-                                    <input type="text" name="input_penyelenggara" class="form-control">
+                                    <input type="text" name="input_penyelenggara" value="{{$d->PENYELENGGARA}}" class="form-control">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tahun Akademik</label>
                                     <select class="form-control" name="input_tahun_akademik">
+                                        <option value="{{$d->ID_TAHUN_AKADEMIK}}" selected>{{$d->tahun_akademik->TAHUN_AKADEMIK}}</option>
                                         @foreach ($tahun_akademik as $tahun_akademik)
                                             <option value="{{ $tahun_akademik->ID_TAHUN_AKADEMIK }}">{{ $tahun_akademik->TAHUN_AKADEMIK }}</option>
                                         @endforeach
@@ -75,7 +77,7 @@
                                 <div class="form-group">
                                     <label>Kelompok Kegiatan</label>
                                     <select class="form-control" name="input_kelompok_kegiatan" id="input_kelompok_kegiatan">
-                                        <option value="-">----------</option>
+                                        <option value="{{$d->jenis_kegiatan->ID_KELOMPOK_KEGIATAN}}" selected>{{$d->jenis_kegiatan->kelompok_kegiatan->KELOMPOK_KEGIATAN}}</option>
                                         @foreach ($kelompok_kegiatan as $kelompok_kegiatan)
                                             <option value="{{ $kelompok_kegiatan->ID_KELOMPOK_KEGIATAN }}">{{ $kelompok_kegiatan->KELOMPOK_KEGIATAN }}</option>
                                         @endforeach
@@ -85,14 +87,14 @@
                                 <div class="form-group">
                                     <label>Jenis Kegiatan</label>
                                     <select class="form-control" name="input_jenis_kegiatan" id="input_jenis_kegiatan">
-                                        <option value="-">----------</option>
+                                        <option value="{{$d->ID_JENIS_KEGIATAN}}" selected>{{$d->jenis_kegiatan->JENIS_KEGIATAN}}</option>
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tingkat</label>
                                     <select class="form-control" name="input_tingkat" id="input_tingkat">
-                                        <option value="-">----------</option>
+                                        <option value="{{$d->ID_TINGKAT}}" selected>{{$d->tingkat->TINGKAT}}</option>
                                     </select>
                                 </div>
 
@@ -116,14 +118,17 @@
                                     <input type="file" class="form-control-file" name="file_daftar_partisipan">
                                     <small class="form-text text-muted">Tipe dokumen: xls, xlsx</small>
                                 </div> -->
-
+                                
                                 <div class="m-t-50 d-flex justify-content-center">
+                                    <a href="{{ url('/admin/detail-acara').'/'.$d->ID_ACARA }}"><button class="btn btn-danger" style="margin-right: 10px">
+                                        BATAL
+                                    </button></a>
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fas fa-save mr-2"></i>
                                         SIMPAN
                                     </button>
                                 </div>
-
+                                @endforeach
                             </form>
                         </div>
                     </div>
@@ -138,7 +143,7 @@
 
 @endsection
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> 
-    <script src="{{ asset('/assets/js/admin/buat-acara.js') }}"></script>
+    <script src="{{ asset('/assets/js/admin/edit-acara.js') }}"></script>
 @section('script')
 
 @endsection 
