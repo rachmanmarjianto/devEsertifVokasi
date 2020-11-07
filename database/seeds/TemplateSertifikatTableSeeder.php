@@ -37,9 +37,9 @@ class TemplateSertifikatTableSeeder extends Seeder
             2 => 
             array (
                 'ID_TEMPLATE' => 3,
-                'NAMA_TEMPLATE' => 'template_1',
+                'NAMA_TEMPLATE' => 'Template 3',
                 'FILE_TEMPLATE' => '/template/template_3.pdf',
-                'FILE_PHP' => 'sdgsdgdsg',
+                'FILE_PHP' => 'sertifikat.template_3',
             ),
         ));
 

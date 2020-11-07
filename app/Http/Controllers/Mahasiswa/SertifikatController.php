@@ -37,7 +37,7 @@ class SertifikatController extends Controller
                 $pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
                 return $pdf->stream($encrypted.".pdf");
             }else{
-                // halaman data tidak ditemukan
+                return redirect('/certificate-not-found');
             }
         }
         
