@@ -71,8 +71,7 @@
 		position: absolute;
 		width: 190 px;
 		height: 180 px; 
-		align: center;
-		left: 186 px;
+		right: 415px;
 		top: 565 px;
 		//150 595
 		font-family: 'Times New Roman';
