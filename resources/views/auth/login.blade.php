@@ -8,7 +8,7 @@
     <title>Login - E-Sertifikat Fakultas Vokasi</title>
 
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/LogoUnair.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo-unair-baru.png') }}">
     <!-- Start css -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
