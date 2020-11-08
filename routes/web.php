@@ -35,7 +35,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/get-encrypt/{nim};{id_acara}', 'Mahasiswa\SertifikatController@getEncrypted');
 
 //route untuk cek sertif
-Route::get('/cek-sertif/{encrypted}', 'Mahasiswa\SertifikatController@getDecrypted');
+Route::get('/cek-sertifikat/{encrypted}', 'Mahasiswa\SertifikatController@getDecrypted');
 
 Route::get('coba',function(){
 	return view('basic-ui-kits-carousel');
