@@ -29,13 +29,14 @@ class SertifikatController extends Controller
         $id_acara = $data[1];
 
         if($nim != null && $id_acara != null){
-            if($partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $nim])->first() != null){
+            $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $nim])->first();
+            if($partisipasi != null){
                 $acara = Acara::find($id_acara);
                 $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
                 $view = $acara->template_sertifikat->FILE_PHP;
 
                 $pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
-                return $pdf->stream("/cek-sertifikat"."/".$encrypted);
+                return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta.".pdf");
             }else{
                 return redirect('/certificate-not-found');
             }
@@ -49,7 +50,7 @@ class SertifikatController extends Controller
     	$acara = Acara::find($id_acara);
     	$peserta = Auth::user()->nim;
         $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $peserta])->first();
-        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($peserta,$acara->id_acara);
+        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($peserta,$id_acara);
         $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
     	$view = $acara->template_sertifikat->FILE_PHP;
 

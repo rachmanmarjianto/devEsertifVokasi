@@ -85,7 +85,8 @@
 	}
 </style>
 <body>
-	<img src="{{ asset($acara->FILE_SERTIF) }}" width="100%">
+	<!-- <img src="{{ asset($acara->FILE_SERTIF) }}" width="100%"> -->
+	<img src="{{ asset('/template/preview_Template 2.png')}}" width="100%">
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
 	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
