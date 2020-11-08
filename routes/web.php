@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
 
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
 	Route::get('/mahasiswa/cetak-sertifikat/{id_acara}', 'Mahasiswa\SertifikatController@cetakSertif');
+	Route::post('/mahasiswa/update-nama', 'Mahasiswa\AcaraController@update_nama_mahasiswa');
 });
 
 //route untuk nyoba encrypt

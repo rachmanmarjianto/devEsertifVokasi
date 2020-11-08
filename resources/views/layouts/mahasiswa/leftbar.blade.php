@@ -23,7 +23,7 @@
                     <div class="tab-pane fade show active" id="v-pills-crm" role="tabpanel" aria-labelledby="v-pills-crm-tab">
                         <ul class="vertical-menu">
                             <!-- <li><h5 class="menu-title">CRM</h5></li>  -->
-                            <li><a href="{{url('/')}}"><img src="{{asset('assets/images/svg-icon/calender.svg')}}" class="img-fluid" alt="acara">Acara</a></li>
+                            <li><a href="{{url('/')}}"><img src="{{asset('/assets/images/svg-icon/calender.svg')}}" class="img-fluid" alt="acara">Acara</a></li>
                         </ul>
                     </div>
                 </div>
