@@ -44,6 +44,10 @@ class TemplateSertifikatTableSeeder extends Seeder
         ));
 
         Ghostscript::setGsPath('C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe');
+
+        // Ghostscript untuk di hosting/server
+        // Ghostscript::setGsPath(base_path().'/public/assets/ghostscript/gs-9533-linux-x86_64');
+
         $template = TemplateSertifikat::all();
 
         foreach($template as $t){

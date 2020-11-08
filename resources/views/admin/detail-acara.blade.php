@@ -361,5 +361,8 @@
 data_peserta = <?php echo json_encode($partisipan[0]); ?>;
 @endif
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
-<script src="{{ asset('assets/plugins/dropzone/dist/dropzone.js') }}"></script>
+<script src="{{ asset('/assets/plugins/dropzone/dist/dropzone.js') }}"></script>
+// <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
+// <script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.0/dist/exceljs.min.js" integrity="sha256-mFnpx7X3UJNOEWEl/KETM5KNxxytoU8Ohaadt4Fhlhw=" crossorigin="anonymous"></script>
+// <script src="{{ asset('/assets/js/admin/excel-template.js') }}"></script>
 @endsection 
