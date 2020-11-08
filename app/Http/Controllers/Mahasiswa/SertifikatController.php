@@ -36,7 +36,7 @@ class SertifikatController extends Controller
                 $view = $acara->template_sertifikat->FILE_PHP;
 
                 $pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
-                return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta.".pdf");
+                return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$nim.".pdf");
             }else{
                 return redirect('/certificate-not-found');
             }
