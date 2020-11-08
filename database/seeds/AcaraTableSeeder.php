@@ -47,6 +47,21 @@ class AcaraTableSeeder extends Seeder
                 'FILE_SERTIF' => '/storage/sertifikat/2020_11_03_WhatsApp Image 2020-10-25 at 18.24.00.jpeg',
                 'FILE_NAMA' => '/storage/excel/2020_11_03_contoh data nim, nama, partisipasi.xlsx',
             ),
+            2 =>
+            array (
+                'ID_ACARA' => 3,
+                'ID_TEMPLATE' => 3,
+                'ID_TINGKAT' => 1,
+                'ID_PRODI' => NULL,
+                'ID_TAHUN_AKADEMIK' => 92,
+                'ID_JENIS_KEGIATAN' => 14,
+                'NAMA_ACARA' => 'Webinar Progressive Web Apps',
+                'PENYELENGGARA' => 'Himpunan Mahasiswa D3 Sistem Informasi',
+                'TANGGAL_PENYELENGGARAAN' => '2020-11-07',
+                'TIMESTAMP' => '2020-11-03 17:18:30',
+                'FILE_SERTIF' => '/storage/sertifikat/test_template_3.jpg',
+                'FILE_NAMA' => '/storage/excel/test_excel.xlsx',
+            ),
         ));
         
         

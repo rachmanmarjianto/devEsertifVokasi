@@ -1,24 +1,32 @@
 @section('title', 'Acara') 
 @extends('layouts.mahasiswa.main')
 @section('style')
-<!-- DataTables css -->
-<!-- <link href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> -->
-<!-- <link href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> -->
-<!-- Responsive Datatable css -->
-<!-- <link href="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
-<script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.js') }}"></script> -->
+<link href="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> --}}
+<link rel="stylesheet" href="{{ asset('/assets/css/mahasiswa/acara.css') }}">
 @endsection 
 @section('rightbar-content')
+    {{-- Alert update nama --}}
+    @if (session('status_update_nama'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: 'Nama anda berhasil diupdate!'
+        });
+    </script>
+    @endif
+    {{-- Alert update nama --}}
 <!-- Start Breadcrumbbar -->                    
 <div class="breadcrumbbar">
                 <div class="row align-items-center">
                     <div class="col-md-8 col-lg-8">
-                        <h4 class="page-title">Buat Acara</h4>
+                        <h4 class="page-title">Acara</h4>
                         <div class="breadcrumb-list">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="index.html">Acara</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Buat Acara</li>
+                                <li class="breadcrumb-item active" aria-current="page">Acara</li>
                             </ol>
                         </div>
                     </div>
@@ -42,7 +50,7 @@
                                         <thead class="thead-dark">
                                             <tr>
                                                 <th>No.</th>
-                                                <th>Tanggal</th>
+                                                <th>Tanggal Penyelenggaraan</th>
                                                 <th>Nama Acara</th>
                                                 <th>Aksi</th>
                                             </tr>
@@ -73,7 +81,7 @@
             <!-- End Contentbar -->
 @endsection 
 @section('script')
-<!-- Datatable js -->
-<script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/assets/js/mahasiswa/acara.js') }}"></script>
 @endsection 

@@ -52,11 +52,11 @@
                         <li class="list-inline-item">
                             <div class="profilebar">
                                 <div class="dropdown">
-                                    <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/images/users/profile.svg') }}" class="img-fluid" alt="profile"><span class="live-icon">Supri</span><span class="feather icon-chevron-down live-icon"></span></a>
+                                    <a class="dropdown-toggle" href="#" role="button" id="profilelink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('/assets/images/users/profile.svg') }}" class="img-fluid" alt="profile"><span class="live-icon">{{ Auth::user()->NAMA_USER }}</span><span class="feather icon-chevron-down live-icon"></span></a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profilelink">
                                         <div class="dropdown-item">
                                             <div class="profilename">
-                                                <h5>Supri</h5>
+                                                <h5>{{ Auth::user()->NAMA_USER }}</h5>
                                             </div>
                                         </div>
                                         <div class="userbox pr-4">

@@ -1,0 +1,18 @@
+table {
+    text-align: center;
+    font-weight: 500;   
+}
+
+table td {
+    word-wrap: break-word !important;
+    white-space: normal !important;
+}
+
+table td.aksi {
+    word-wrap: none !important;
+    white-space: nowrap !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+}
