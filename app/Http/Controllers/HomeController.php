@@ -43,7 +43,7 @@ class HomeController extends Controller
 
     public function changepass(Request $req){
 
-        $id = Auth::user()->username;
+        $id = Auth::user()->nim;
 
         $user = User::find($id);
         $user->password = bcrypt($req->new_password);
