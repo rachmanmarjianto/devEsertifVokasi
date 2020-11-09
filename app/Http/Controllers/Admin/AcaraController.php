@@ -302,6 +302,8 @@ class AcaraController extends Controller
             'file_daftar_partisipan' => 'required|file|mimes:xls,xlsx',
         ]);
 
+        $peserta = PesertaAcara::where('ID_ACARA', $request->id_acara)->delete();
+
         $acara = Acara::find($request->id_acara);
 
         $file_daftar_partisipan = $request->file('file_daftar_partisipan');
@@ -315,6 +317,8 @@ class AcaraController extends Controller
         $acara->FILE_NAMA = $path_daftar_partisipan;
         $acara->save();
 
+        $id_jenis_kegiatan = Acara::select('ID_JENIS_KEGIATAN')->where('ID_ACARA', '=', $request->id_acara)->first();
+
         $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
         $headings = $headings[0][0];
@@ -324,7 +328,7 @@ class AcaraController extends Controller
             $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
 
             for($i=0;$i<count($partisipan[0]);$i++){
-                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN',$acara->id_jenis_kegiatan)->where('PARTISIPASI',$partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN', $id_jenis_kegiatan->ID_JENIS_KEGIATAN)->where('PARTISIPASI', $partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
 
                 if ($id_partisipasi != null) {
                     $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
