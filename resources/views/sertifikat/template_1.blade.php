@@ -66,9 +66,10 @@
 		text-align: center;
 		alignment-baseline: central;
 		padding: 10px;
+		
 	}
 
-	#gambar-ttd{
+	.gambar-ttd{
 		object-fit: cover;
 	}
 
@@ -110,6 +111,6 @@
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
 	<span id="partisipasi">{{ $partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
-    <div id="ttd-dekan"><img src="{{ asset('/ttd/'.'ttdku.png') }}" id="gambar-ttd"></div>
+    <img src="{{ asset('/ttd/'.'ttdku.png') }}" id="ttd-dekan" class="gambar-ttd">
 </body>
 </html>
