@@ -332,7 +332,7 @@
 
             <form action="{{ url('/admin/upload-partisipan') }}" method="post" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
+                <input type="hidden" name="id_acara" value="{{ $id_acara }}">
             <div class="modal-body">
                 <h5 class="card-title">Upload File</h5>
                 <hr>
