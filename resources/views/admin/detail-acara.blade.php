@@ -136,15 +136,6 @@
                             <h6>: &nbsp; {{ $file_sertif }}</h6>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <label>File Daftar Partisipan</label>
-                        </div>
-                        <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; {{ $file_nama }}</h6>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

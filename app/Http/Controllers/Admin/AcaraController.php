@@ -177,9 +177,6 @@ class AcaraController extends Controller
         $file_sertif = DB::table('acara')->where('ID_ACARA', $id)->value('FILE_SERTIF');
         $file_sertif = str_replace('/storage/sertifikat/', '', $file_sertif);
 
-        $file_nama = DB::table('acara')->where('ID_ACARA', $id)->value('FILE_NAMA');
-        $file_nama = str_replace('/storage/excel/', '', $file_nama);
-
         $id_tahun_akademik = DB::table('acara')->where('ID_ACARA', $id)->value('ID_TAHUN_AKADEMIK');
         $tahun_akademik = DB::table('tahun_akademik')->where('ID_TAHUN_AKADEMIK', $id_tahun_akademik)->value('TAHUN_AKADEMIK');
 
@@ -210,7 +207,6 @@ class AcaraController extends Controller
             'jenis_kegiatan',
             'tingkat',
             'file_sertif',
-            'file_nama',
             'partisipan',
             'partisipasi',
             'status',
@@ -313,10 +309,6 @@ class AcaraController extends Controller
 
         // Simpan file ke storage (public/storage/)
         $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
-
-        // Insert DB
-        $acara->FILE_NAMA = $path_daftar_partisipan;
-        $acara->save();
 
         $id_jenis_kegiatan = Acara::select('ID_JENIS_KEGIATAN')->where('ID_ACARA', '=', $request->id_acara)->first();
 
