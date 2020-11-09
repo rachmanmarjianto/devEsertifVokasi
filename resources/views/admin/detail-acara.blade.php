@@ -136,15 +136,6 @@
                             <h6>: &nbsp; {{ $file_sertif }}</h6>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <label>File Daftar Partisipan</label>
-                        </div>
-                        <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; {{ $file_nama }}</h6>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -287,6 +278,12 @@
                                       <label for="{{$t->ID_TEMPLATE}}" class="pl-2">{{$t->NAMA_TEMPLATE}}</label>
                                     </div>
                                 </div>
+                                <a href="{{url('/admin/download/template/'.$t->ID_TEMPLATE)}}">
+                                    <button class="btn btn-sm btn-success text-light" type="button">
+                                        <i class="fas fa-download mr-2"></i>
+                                        Unduh {{$t->NAMA_TEMPLATE}}
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>

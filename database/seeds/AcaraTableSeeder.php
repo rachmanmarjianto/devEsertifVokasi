@@ -30,7 +30,6 @@ class AcaraTableSeeder extends Seeder
                 'TANGGAL_PENYELENGGARAAN' => '2020-11-03',
                 'TIMESTAMP' => '2020-11-03 17:18:30',
                 'FILE_SERTIF' => '/storage/sertifikat/2020_11_03_WhatsApp Image 2020-10-25 at 18.24.00.jpeg',
-                'FILE_NAMA' => '/storage/excel/2020_11_03_contoh data nim, nama, partisipasi.xlsx',
             ),
             1 =>
             array (
@@ -45,7 +44,6 @@ class AcaraTableSeeder extends Seeder
                 'TANGGAL_PENYELENGGARAAN' => '2020-11-04',
                 'TIMESTAMP' => '2020-11-03 17:18:30',
                 'FILE_SERTIF' => '/storage/sertifikat/2020_11_03_WhatsApp Image 2020-10-25 at 18.24.00.jpeg',
-                'FILE_NAMA' => '/storage/excel/2020_11_03_contoh data nim, nama, partisipasi.xlsx',
             ),
             2 =>
             array (
@@ -60,7 +58,6 @@ class AcaraTableSeeder extends Seeder
                 'TANGGAL_PENYELENGGARAAN' => '2020-11-07',
                 'TIMESTAMP' => '2020-11-03 17:18:30',
                 'FILE_SERTIF' => '/storage/sertifikat/test_template_3.jpg',
-                'FILE_NAMA' => '/storage/excel/test_excel.xlsx',
             ),
         ));
         

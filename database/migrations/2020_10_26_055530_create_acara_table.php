@@ -25,7 +25,6 @@ class CreateAcaraTable extends Migration
             $table->date('TANGGAL_PENYELENGGARAAN');
             $table->timestamp('TIMESTAMP')->useCurrent();
             $table->text('FILE_SERTIF')->nullable();
-            $table->text('FILE_NAMA')->nullable();
         });
     }
 

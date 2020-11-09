@@ -29,6 +29,11 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
 	Route::get('/mahasiswa/cetak-sertifikat/{id_acara}', 'Mahasiswa\SertifikatController@cetakSertif');
 	Route::post('/mahasiswa/update-nama', 'Mahasiswa\AcaraController@update_nama_mahasiswa');
+
+	Route::get('/admin/download/template/{id}',function($id){
+		$file = App\Models\TemplateSertifikat::find($id);
+		return Storage::disk('public')->download($file->FILE_TEMPLATE);
+	});
 });
 
 //route untuk nyoba encrypt
