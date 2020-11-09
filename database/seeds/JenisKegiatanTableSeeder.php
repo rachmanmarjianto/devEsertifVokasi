@@ -69,12 +69,17 @@ class JenisKegiatanTableSeeder extends Seeder
             "Lomba Blog"
         );
 
+        $jenis_kegiatan_kelompok7 = array(
+            "Proker Vokasi"
+        );
+
         $jumlah_jenis_kegiatan_kelompok1 = count($jenis_kegiatan_kelompok1);
         $jumlah_jenis_kegiatan_kelompok2 = count($jenis_kegiatan_kelompok2);
         $jumlah_jenis_kegiatan_kelompok3 = count($jenis_kegiatan_kelompok3);
         $jumlah_jenis_kegiatan_kelompok4 = count($jenis_kegiatan_kelompok4);
         $jumlah_jenis_kegiatan_kelompok5 = count($jenis_kegiatan_kelompok5);
         $jumlah_jenis_kegiatan_kelompok6 = count($jenis_kegiatan_kelompok6);
+        $jumlah_jenis_kegiatan_kelompok7 = count($jenis_kegiatan_kelompok7);
 
         $id_jenis_kegiatan = 1;
 
@@ -144,6 +149,18 @@ class JenisKegiatanTableSeeder extends Seeder
                 'ID_JENIS_KEGIATAN' => $id_jenis_kegiatan,
                 'ID_KELOMPOK_KEGIATAN' => 6,
                 'JENIS_KEGIATAN' => $jenis_kegiatan_kelompok6[$i]
+            ]);
+
+            $id_jenis_kegiatan++;
+
+        }
+
+        for ($i = 0; $i < $jumlah_jenis_kegiatan_kelompok7; $i++){
+
+            DB::table('jenis_kegiatan')->insert([
+                'ID_JENIS_KEGIATAN' => $id_jenis_kegiatan,
+                'ID_KELOMPOK_KEGIATAN' => 7,
+                'JENIS_KEGIATAN' => $jenis_kegiatan_kelompok7[$i]
             ]);
 
             $id_jenis_kegiatan++;

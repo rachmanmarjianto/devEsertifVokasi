@@ -321,6 +321,14 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <div class="modal-body my-1">
+                <a href="https://drive.idcloudhost.com/s/kF56754xkn8FP8G" target="_blank" class="btn btn-sm btn-success">
+                    <i class="fas fa-file-excel mr-2"></i>
+                    TEMPLATE EXCEL DAFTAR PARTISIPAN
+                </a>
+            </div>
+
             <form action="{{ url('/admin/upload-partisipan') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
