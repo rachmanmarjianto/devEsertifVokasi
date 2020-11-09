@@ -364,10 +364,10 @@
     var id_acara = <?php echo $id_acara; ?>;
     var APP_URL = "<?php echo url('/'); ?>";
     var token = " {{ csrf_token() }}";
+    @if($status)
+    data_peserta = <?php echo json_encode($partisipan[0]); ?>;
+    @endif
 </script>
-@if($status)
-data_peserta = <?php echo json_encode($partisipan[0]); ?>;
-@endif
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 <script src="{{ asset('/assets/plugins/dropzone/dist/dropzone.js') }}"></script>
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
