@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/update/{id}', 'Admin\AcaraController@update_peserta');
 	Route::post('/admin/upload-sertif', 'Admin\AcaraController@storeSertif');
 	Route::post('/admin/upload-partisipan', 'Admin\AcaraController@storePartisipan');
+	Route::get('/admin/cetak-sertifikat/{id_acara}', 'Mahasiswa\SertifikatController@testCetakSertif');
 
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
 	Route::get('/mahasiswa/cetak-sertifikat/{id_acara}', 'Mahasiswa\SertifikatController@cetakSertif');
