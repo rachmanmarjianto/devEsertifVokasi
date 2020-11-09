@@ -287,6 +287,12 @@
                                       <label for="{{$t->ID_TEMPLATE}}" class="pl-2">{{$t->NAMA_TEMPLATE}}</label>
                                     </div>
                                 </div>
+                                <a href="{{url('/admin/download/template/'.$t->ID_TEMPLATE)}}">
+                                    <button class="btn btn-sm btn-success text-light" type="button">
+                                        <i class="fas fa-download mr-2"></i>
+                                        Unduh {{$t->NAMA_TEMPLATE}}
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
