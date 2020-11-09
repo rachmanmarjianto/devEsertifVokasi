@@ -57,4 +57,18 @@ class SertifikatController extends Controller
     	$pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
     	return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$peserta.".pdf");
     }
+
+    //function test cetak sertif
+    public function testCetakSertif($id_acara)
+    {
+    	$acara = Acara::find($id_acara);
+    	$partisipasi = PesertaAcara::where('ID_ACARA', '=', $id_acara)->first();
+        // $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $nim])->first();
+        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($partisipasi,$id_acara);
+        $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
+    	$view = $acara->template_sertifikat->FILE_PHP;
+
+    	$pdf = PDF::loadView($view,compact("partisipasi","qrcode","acara"));
+    	return $pdf->stream('E-Sertif '.$acara->NAMA_ACARA.' '.$partisipasi.".pdf");
+    }
 }
