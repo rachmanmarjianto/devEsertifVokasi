@@ -253,6 +253,9 @@ $(function () {
         } else if ( $(this).val() == 43 ) {
             $('#input_tingkat').empty();
             $('#input_tingkat').append(new Option('----------', '-'));
+        } else if ( $(this).val() == 44 ) {
+            $('#input_tingkat').empty();
+            $('#input_tingkat').append(new Option('----------', '-'));
         }
 
     });

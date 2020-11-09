@@ -42,6 +42,11 @@ class KelompokKegiatanTableSeeder extends Seeder
                 'ID_KELOMPOK_KEGIATAN' => 6,
                 'KELOMPOK_KEGIATAN' => 'Kegiatan Lainnya',
             ),
+            6 =>
+            array (
+                'ID_KELOMPOK_KEGIATAN' => 7,
+                'KELOMPOK_KEGIATAN' => 'Proker Vokasi',
+            ),
         ));
     }
 }
