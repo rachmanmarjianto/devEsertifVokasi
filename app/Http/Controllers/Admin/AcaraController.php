@@ -16,6 +16,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use Maatwebsite\Excel\HeadingRowImport;
 use Redirect;
 use Input;
+use Illuminate\Support\Facades\Storage;
 
 class AcaraController extends Controller
 {
@@ -359,6 +360,11 @@ class AcaraController extends Controller
         else{
             return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
         }
+
+        // Delete file
+        Storage::disk('public')->delete($path_daftar_partisipan);
+        // File::delete($path_daftar_partisipan);
+        // unlink($path_daftar_partisipan);
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
     }
