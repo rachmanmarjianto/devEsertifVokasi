@@ -324,7 +324,7 @@
             </div>
 
             <div class="modal-body my-1">
-                <a href="https://drive.idcloudhost.com/s/kF56754xkn8FP8G" target="_blank" class="btn btn-sm btn-success">
+                <a href="{{ url('/getexcel/daftar_partisipan.xlsx') }}" target="_blank" class="btn btn-sm btn-success">
                     <i class="fas fa-file-excel mr-2"></i>
                     TEMPLATE EXCEL DAFTAR PARTISIPAN
                 </a>
