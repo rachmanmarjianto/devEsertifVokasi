@@ -4,7 +4,7 @@
         <div class="row align-items-center">
             <div class="col-md-12">
                 <div class="mobile-logobar">
-                    <a href="{{ url('/') }}" class="mobile-logo"><img src="{{ asset('assets/images/logo-unair-baru.png') }}" style="height: 40px; width: 40px;" class="img-fluid" alt="logo"></a>
+                    <a href="{{ url('/') }}" class="mobile-logo"><img src="{{ asset('/assets/images/logo-unair-baru.png') }}" style="height: 40px; width: 40px;" class="img-fluid" alt="logo"></a>
                     FAKULTAS VOKASI
                 </div>
                 <div class="mobile-togglebar">

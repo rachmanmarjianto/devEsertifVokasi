@@ -256,7 +256,8 @@ code {
   height: 100%;
   width: 60px;
   float: left;
-  background-color: #506fe4;
+  /* background-color: #506fe4; */ 
+  background-color: #FFB72B;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
