@@ -57,10 +57,10 @@
 
     #ttd-dekan {
 		position: absolute;
-		width: 190 px;
-		height: 180 px; 
-		right: 455px;
-		top: 565 px;
+		width: 150 px;
+		height: 140 px; 
+		right: 470px;
+		top: 575 px;
 		//150 595
 		font-family: 'Times New Roman';
 		font-size: 30px;

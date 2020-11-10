@@ -15,7 +15,7 @@ class CreateAcaraTable extends Migration
     {
         Schema::create('acara', function (Blueprint $table) {
             $table->integer('ID_ACARA', true);
-            $table->integer('ID_TEMPLATE')->index('MENGGUNAKAN_FK');
+            $table->integer('ID_TEMPLATE')->nullable()->index('MENGGUNAKAN_FK');
             $table->integer('ID_TINGKAT')->index('MEMILIKI_FK');
             $table->integer('ID_PRODI')->nullable()->index('RELATIONSHIP_9_FK');
             $table->integer('ID_TAHUN_AKADEMIK')->index('PADA_FK');

@@ -17,6 +17,7 @@ use Maatwebsite\Excel\HeadingRowImport;
 use Redirect;
 use Input;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Response;
 
 class AcaraController extends Controller
 {
@@ -359,5 +360,18 @@ class AcaraController extends Controller
         // unlink($path_daftar_partisipan);
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
+    }
+
+    // Function download file excel template daftar partisipan
+    public function getExcel($filename)
+    {
+        $file_path = base_path().'/public/assets/excel/'.$filename;
+        if ( file_exists($file_path) ) {
+            return Response::download($file_path, $filename, [ 
+                'Content-Length: '. filesize($file_path) 
+            ]);
+        } else {
+            exit('Requested file does not exist on our server!'); 
+        }
     }
 }

@@ -42,3 +42,6 @@ Route::get('/get-encrypt/{nim};{id_acara}', 'Mahasiswa\SertifikatController@getE
 
 //route untuk cek sertif
 Route::get('/cek-sertifikat/{encrypted}', 'Mahasiswa\SertifikatController@getDecrypted');
+
+// route untuk download file excel template daftar partisipan
+Route::get('/getexcel/{filename}', 'Admin\AcaraController@getExcel');
