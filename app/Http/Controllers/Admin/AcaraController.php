@@ -352,13 +352,15 @@ class AcaraController extends Controller
                         'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
                     ]);
                 }
+                Storage::disk('public')->delete($path_daftar_partisipan);
             }
             else{
-                return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
+                Storage::disk('public')->delete($path_daftar_partisipan);
+                return Redirect::back()->withErrors(['file_daftar_partisipan' => 'Mohon upload file partisipan sesuai format.']);
             }
 
             // Delete file
-            Storage::disk('public')->delete($path_daftar_partisipan);
+            
         });
 
         return redirect('/admin/detail-acara/'.$request->id_acara);

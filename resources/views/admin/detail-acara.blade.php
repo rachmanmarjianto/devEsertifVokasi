@@ -350,7 +350,7 @@
                     <input type="file" required accept=".xls,.xlsx" name="file_daftar_partisipan" class="form-control @error('file_daftar_partisipan') is-invalid @enderror">
                     <small class="form-text text-muted">Tipe dokumen: xls, xlsx</small>
                     <div class="invalid-feedback">
-                        Mohon upload file partisipan
+                        Mohon upload file partisipan sesuai format.
                     </div>
                 </div>
 
@@ -384,6 +384,7 @@
     @endif
     @error('file_sertif') $('#modal-upload-sertif').modal('toggle'); @enderror
     @error('template') $('#modal-upload-sertif').modal('toggle'); @enderror
+    @error('file_daftar_partisipan') $('#modal-upload-partisipan').modal('toggle'); @enderror
 </script>
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 <script src="{{ asset('/assets/plugins/dropzone/dist/dropzone.js') }}"></script>
