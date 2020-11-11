@@ -22,8 +22,8 @@
 		text-align: center;
 		font-family: 'Times New Roman';
 		font-size: 28pt;
-		border-color: yellow;
-		background-color: white;
+		/*border-color: yellow;*/
+		/*background-color: white;*/
 		/*color: white;*/
 	}
 
@@ -36,8 +36,8 @@
 		
 		font-family: 'Times New Roman';
 		font-size: 30px;
-		border-color: yellow;
-		background-color: white;
+		/*border-color: yellow;*/
+		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
@@ -52,7 +52,7 @@
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
-		background-color: white;
+		/*background-color: white;*/
 	}
 
     #ttd-dekan {
@@ -64,7 +64,7 @@
 		//150 595
 		font-family: 'Times New Roman';
 		font-size: 30px;
-		border-color: yellow;
+		/*border-color: yellow;*/
 		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
