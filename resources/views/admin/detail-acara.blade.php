@@ -50,23 +50,33 @@
         <div class="col-md-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <div class="row mb-3">
-                        <a href="{{ url('/admin/edit-acara').'/'.$id_acara }}"><button class="btn btn-lg btn-warning text-dark ml-3 mr-3" id="" style="margin-top: 10px">
-                            <i class="fas fa-pen mr-2"></i>
-                            EDIT
-                        </button></a>
-                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif" style="margin-top: 10px">
-                            <i class="fas fa-upload mr-2"></i>
-                            Upload Sertifikat
-                        </button>
-                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-partisipan" style="margin-top: 10px">
-                            <i class="fas fa-upload mr-2"></i>
-                            Upload Partisipan
-                        </button>
-                        <a href="{{ url('/admin/cetak-sertifikat').'/'.$id_acara }}" class="btn btn-lg btn-danger text-light mr-3" style="margin-top: 10px">
-                            <i class="fas fa-print mr-2"></i>
-                            TEST CETAK
-                        </a>
+                    <div class="row mb-4">
+                        <div class="col-xl-2 col-12">
+                            <a href="{{ url('/admin/edit-acara').'/'.$id_acara }}">
+                                <button class="btn btn-lg btn-warning text-dark mr-3" id="" style="margin-top: 10px">
+                                    <i class="fas fa-pen mr-2"></i>
+                                    EDIT
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-xl-2 col-12">
+                            <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif" style="margin-top: 10px">
+                                <i class="fas fa-upload mr-2"></i>
+                                Upload Sertifikat
+                            </button>
+                        </div>
+                        <div class="col-xl-2 col-12">
+                            <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-partisipan" style="margin-top: 10px">
+                                <i class="fas fa-upload mr-2"></i>
+                                Upload Partisipan
+                            </button>
+                        </div>
+                        <div class="col-xl-2 col-12">
+                            <a href="{{ url('/admin/cetak-sertifikat').'/'.$id_acara }}" class="btn btn-lg btn-danger text-light mr-3" style="margin-top: 10px">
+                                <i class="fas fa-print mr-2"></i>
+                                TEST CETAK
+                            </a>
+                        </div>
                     </div>
 
                     <div class="row">
