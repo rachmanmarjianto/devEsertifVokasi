@@ -109,7 +109,7 @@
 <body>
 	<img src="{{ asset($acara->FILE_SERTIF) }}" width="100%" id="gambar-sertif">
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
-	<span id="partisipasi">{{ $partisipasi->PARTISIPASI }}</span>
+	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
     <img src="{{ asset('/ttd/'.'ttdku.png') }}" id="ttd-dekan" class="gambar-ttd">
 </body>
