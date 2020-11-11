@@ -13,15 +13,15 @@
 	}
 	#nama-partisipan {
 		position: absolute;
-		width: 690 px;
+		width: 735 px;
 		height: 45 px;
-		left: 217 px;
+		left: 190 px;
 		top: 188 px;
 		text-align: center;
 		font-family: 'Times New Roman';
 		font-size: 28pt;
 		/*border-color: yellow;*/
-		/*background-color: white;*/
+		background-color: white;
 		/*color: white;*/
 	}
 	#partisipasi {
