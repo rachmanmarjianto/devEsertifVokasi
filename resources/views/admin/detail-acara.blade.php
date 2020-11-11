@@ -141,7 +141,7 @@
                             <label>File Sertifikat</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; {{ $file_sertif }}</h6>
+                            <h6>: &nbsp; @if($file_sertif != null) {{ $file_sertif }} @else - @endif</h6>
                         </div>
                     </div>
                 </div>
