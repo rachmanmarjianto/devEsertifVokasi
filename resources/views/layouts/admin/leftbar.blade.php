@@ -25,7 +25,12 @@
                 <div class="tab-content" id="v-pills-tabContent">
                     <div class="tab-pane fade show active" id="v-pills-crm" role="tabpanel" aria-labelledby="v-pills-crm-tab">
                         <ul class="vertical-menu">
-                            <li><a href="{{url('/')}}"><img src="{{asset('/assets/images/svg-icon/calender.svg')}}" class="img-fluid" alt="acara">Acara</a></li>
+                            <li>
+                                <a href="{{url('/')}}"><img src="{{asset('/assets/images/svg-icon/calender.svg')}}" class="img-fluid" alt="acara">Acara</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/cari-mahasiswa')}}"><img src="{{asset('/assets/images/svg-icon/search.svg')}}" class="img-fluid" alt="acara">Cari Mahasiswa</a>
+                            </li>
                         </ul>
                     </div>
                     
