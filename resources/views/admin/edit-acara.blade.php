@@ -45,57 +45,78 @@
                             @if($errors->any())
                             <div class="alert alert-danger">{{$errors->first()}}</div>
                             @endif
-                            <form action="{{ url('/admin/edit-acara') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ url('/admin/edit-acara') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                                 @csrf
                                 @foreach($data as $d)
                                 <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
                                 <div class="form-group">
-                                    <label>Nama Acara</label>
-                                    <input type="text" name="input_nama_acara" value="{{$d->NAMA_ACARA}}" class="form-control">
+                                    <label style="color: black">Nama Acara</label>
+                                    <input type="text" name="input_nama_acara" value="{{$d->NAMA_ACARA}}" class="form-control @error('input_nama_acara') is-invalid @enderror" required>
+                                    <div class="invalid-feedback">
+                                        Mohon isi nama acara dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tanggal Penyelenggaraan</label>
-                                    <input type="date" name="input_tanggal_penyelenggaraan" value="{{$d->TANGGAL_PENYELENGGARAAN}}" class="form-control">
+                                    <label style="color: black">Tanggal Penyelenggaraan</label>
+                                    <input type="date" name="input_tanggal_penyelenggaraan" value="{{$d->TANGGAL_PENYELENGGARAAN}}" class="form-control @error('input_tanggal_penyelenggaraan') is-invalid @enderror" required>
+                                    <div class="invalid-feedback">
+                                        Mohon isi tanggal penyelenggaraan dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Penyelenggara</label>
-                                    <input type="text" name="input_penyelenggara" value="{{$d->PENYELENGGARA}}" class="form-control">
+                                    <label style="color: black">Penyelenggara</label>
+                                    <input type="text" name="input_penyelenggara" value="{{$d->PENYELENGGARA}}" class="form-control @error('input_penyelenggara') is-invalid @enderror" required>
+                                    <div class="invalid-feedback">
+                                        Mohon isi penyelenggara dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tahun Akademik</label>
-                                    <select class="form-control" name="input_tahun_akademik">
+                                    <label style="color: black">Tahun Akademik</label>
+                                    <select class="form-control @error('input_tahun_akademik') is-invalid @enderror" name="input_tahun_akademik" required>
                                         <option value="{{$d->ID_TAHUN_AKADEMIK}}" selected>{{$d->tahun_akademik->TAHUN_AKADEMIK}}</option>
                                         @foreach ($tahun_akademik as $tahun_akademik)
                                             <option value="{{ $tahun_akademik->ID_TAHUN_AKADEMIK }}">{{ $tahun_akademik->TAHUN_AKADEMIK }}</option>
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Mohon isi tahun akademik dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Kelompok Kegiatan</label>
-                                    <select class="form-control" name="input_kelompok_kegiatan" id="input_kelompok_kegiatan">
+                                    <label style="color: black">Kelompok Kegiatan</label>
+                                    <select class="form-control @error('input_kelompok_kegiatan') is-invalid @enderror" name="input_kelompok_kegiatan" id="input_kelompok_kegiatan" required>
                                         <option value="{{$d->jenis_kegiatan->ID_KELOMPOK_KEGIATAN}}" selected>{{$d->jenis_kegiatan->kelompok_kegiatan->KELOMPOK_KEGIATAN}}</option>
                                         @foreach ($kelompok_kegiatan as $kelompok_kegiatan)
                                             <option value="{{ $kelompok_kegiatan->ID_KELOMPOK_KEGIATAN }}">{{ $kelompok_kegiatan->KELOMPOK_KEGIATAN }}</option>
                                         @endforeach
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Mohon isi kelompok kegiatan dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Jenis Kegiatan</label>
-                                    <select class="form-control" name="input_jenis_kegiatan" id="input_jenis_kegiatan">
+                                    <label style="color: black">Jenis Kegiatan</label>
+                                    <select class="form-control @error('input_jenis_kegiatan') is-invalid @enderror" name="input_jenis_kegiatan" id="input_jenis_kegiatan" required>
                                         <option value="{{$d->ID_JENIS_KEGIATAN}}" selected>{{$d->jenis_kegiatan->JENIS_KEGIATAN}}</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Mohon isi jenis kegiatan dengan benar.
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Tingkat</label>
-                                    <select class="form-control" name="input_tingkat" id="input_tingkat">
+                                    <label style="color: black">Tingkat</label>
+                                    <select class="form-control @error('input_tingkat') is-invalid @enderror" name="input_tingkat" id="input_tingkat" required>
                                         <option value="{{$d->ID_TINGKAT}}" selected>{{$d->tingkat->TINGKAT}}</option>
                                     </select>
+                                    <div class="invalid-feedback">
+                                        Mohon isi tingkat dengan benar.
+                                    </div>
                                 </div>
 
                                 <!-- <div class="form-group">
