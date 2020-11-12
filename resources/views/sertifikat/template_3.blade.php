@@ -15,15 +15,15 @@
 
 	#nama-partisipan {
 		position: absolute;
-		width: 690 px;
+		width: 735 px;
 		height: 45 px;
-		left: 217 px;
+		left: 190 px;
 		top: 188 px;
 		text-align: center;
 		font-family: 'Times New Roman';
 		font-size: 28pt;
-		border-color: yellow;
-		background-color: white;
+		/*border-color: yellow;*/
+		/*background-color: blue;*/
 		/*color: white;*/
 	}
 
@@ -36,8 +36,8 @@
 		
 		font-family: 'Times New Roman';
 		font-size: 30px;
-		border-color: yellow;
-		background-color: white;
+		/*border-color: yellow;*/
+		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
@@ -52,7 +52,7 @@
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
-		background-color: white;
+		/*background-color: white;*/
 	}
 
     #ttd-dekan {
@@ -64,16 +64,25 @@
 		//150 595
 		font-family: 'Times New Roman';
 		font-size: 30px;
-		border-color: yellow;
+		/*border-color: yellow;*/
 		/*background-color: white;*/
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
 		padding: 10px;
 	}
+
+	#ttd-dekan{
+		object-fit: cover;
+	}
+
+	#gambar-sertif{
+		position: absolute;
+	}
+	
 </style>
 <body>
-	<img src="{{ asset($acara->FILE_SERTIF) }}" width="100%">
+	<img src="{{ asset($acara->FILE_SERTIF) }}" width="100%" id="gambar-sertif">
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
 	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">

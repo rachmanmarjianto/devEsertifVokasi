@@ -50,23 +50,27 @@
         <div class="col-md-12">
             <div class="card m-b-30">
                 <div class="card-body">
-                    <div class="row mb-3">
-                        <a href="{{ url('/admin/edit-acara').'/'.$id_acara }}"><button class="btn btn-lg btn-warning text-dark ml-3 mr-3" id="" style="margin-top: 10px">
-                            <i class="fas fa-pen mr-2"></i>
-                            EDIT
-                        </button></a>
-                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif" style="margin-top: 10px">
-                            <i class="fas fa-upload mr-2"></i>
-                            Upload Sertifikat
-                        </button>
-                        <button class="btn btn-lg btn-info text-light mr-3" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-partisipan" style="margin-top: 10px">
-                            <i class="fas fa-upload mr-2"></i>
-                            Upload Partisipan
-                        </button>
-                        <a href="{{ url('/admin/cetak-sertifikat').'/'.$id_acara }}" class="btn btn-lg btn-danger text-light mr-3" style="margin-top: 10px">
-                            <i class="fas fa-print mr-2"></i>
-                            TEST CETAK
-                        </a>
+                    <div class="row mb-4 justify-content-between">
+                        <div class="col">
+                            <button class="btn btn-lg btn-info text-light mr-2" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-sertif" style="margin-top: 10px">
+                                <i class="fas fa-upload mr-2"></i>
+                                Upload Sertifikat
+                            </button>
+                            <button class="btn btn-lg btn-info text-light mr-2" id="upload-sertif" data-toggle="modal" data-target="#modal-upload-partisipan" style="margin-top: 10px">
+                                <i class="fas fa-upload mr-2"></i>
+                                Upload Partisipan
+                            </button>
+                            <a href="{{ url('/admin/edit-acara').'/'.$id_acara }}">
+                                <button class="btn btn-lg btn-warning text-dark mr-2" id="" style="margin-top: 10px">
+                                    <i class="fas fa-pen mr-2"></i>
+                                    Edit Detail Acara
+                                </button>
+                            </a>
+                            <a href="{{ url('/admin/cetak-sertifikat').'/'.$id_acara }}" class="btn btn-lg btn-danger text-light mr-2" style="margin-top: 10px">
+                                <i class="fas fa-print mr-2"></i>
+                                Test Cetak Sertifikat
+                            </a>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -137,7 +141,7 @@
                             <label>File Sertifikat</label>
                         </div>
                         <div class="col-md-9 col-sm-12">
-                            <h6>: &nbsp; {{ $file_sertif }}</h6>
+                            <h6>: &nbsp; @if($file_sertif != null) {{ $file_sertif }} @else - @endif</h6>
                         </div>
                     </div>
                 </div>
@@ -261,7 +265,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ url('/admin/upload-sertif') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/admin/upload-sertif') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
                 <input type="hidden" name="id_acara" value="{{request()->segment(3)}}">
             <div class="modal-body">
@@ -277,9 +281,12 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-text mb-1 custom-radio-button">
-                                    <div class="radio-primary ml-3">
-                                      <input type="radio" id="{{$t->ID_TEMPLATE}}" class="form-control-file" name="template" class="radioTemplate" value="{{$t->ID_TEMPLATE}}">
+                                    <div class="form-group radio-primary ml-3">
+                                      <input type="radio" id="{{$t->ID_TEMPLATE}}" class="form-control @error('template') is-invalid @enderror" name="template" class="radioTemplate" value="{{$t->ID_TEMPLATE}}" required>
                                       <label for="{{$t->ID_TEMPLATE}}" class="pl-2">{{$t->NAMA_TEMPLATE}}</label>
+                                      <div class="invalid-feedback">
+                                            Mohon pilih template sertifikat
+                                        </div>
                                     </div>
                                 </div>
                                 <a href="{{url('/admin/download/template/'.$t->ID_TEMPLATE)}}">
@@ -295,7 +302,10 @@
                 </div>
                 <h5 class="card-title">Upload File Sertifikat</h5>
                 <hr>
-                <input type="file" required accept=".jpg,.jpeg,.png" name="file_sertif">
+                <input type="file" accept=".jpg,.jpeg,.png" name="file_sertif" class="form-control @error('file_sertif') is-invalid @enderror" required>
+                <div class="invalid-feedback">
+                    Mohon upload file sertifikat
+                </div>
                 
             </div>
 
@@ -330,22 +340,26 @@
                 </a>
             </div>
 
-            <form action="{{ url('/admin/upload-partisipan') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('/admin/upload-partisipan') }}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 @csrf
                 <input type="hidden" name="id_acara" value="{{ $id_acara }}">
-            <div class="modal-body">
-                <h5 class="card-title">Upload File</h5>
-                <hr>
-                <input type="file" required accept=".xls,.xlsx" name="file_daftar_partisipan">
-                <small class="form-text text-muted">Tipe dokumen: xls, xlsx</small>
-            </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-sm btn-danger" data-dismiss="modal">
-                    BATAL
-                </button>
-                <input type="submit" class="btn btn-sm btn-primary" value="SIMPAN">
-            </div>
+                <div class="modal-body">
+                    <h5 class="card-title">Upload File</h5>
+                    <hr>
+                    <input type="file" required accept=".xls,.xlsx" name="file_daftar_partisipan" class="form-control @error('file_daftar_partisipan') is-invalid @enderror">
+                    <small class="form-text text-muted">Tipe dokumen: xls, xlsx</small>
+                    <div class="invalid-feedback">
+                        Mohon upload file partisipan sesuai format.
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-danger" data-dismiss="modal">
+                        BATAL
+                    </button>
+                    <input type="submit" class="btn btn-sm btn-primary" value="SIMPAN">
+                </div>
             </form>
         </div>
     </div>
@@ -368,10 +382,13 @@
     @if($status)
     data_peserta = <?php echo json_encode($partisipan[0]); ?>;
     @endif
+    @error('file_sertif') $('#modal-upload-sertif').modal('toggle'); @enderror
+    @error('template') $('#modal-upload-sertif').modal('toggle'); @enderror
+    @error('file_daftar_partisipan') $('#modal-upload-partisipan').modal('toggle'); @enderror
 </script>
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 <script src="{{ asset('/assets/plugins/dropzone/dist/dropzone.js') }}"></script>
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
-// <script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.0/dist/exceljs.min.js" integrity="sha256-mFnpx7X3UJNOEWEl/KETM5KNxxytoU8Ohaadt4Fhlhw=" crossorigin="anonymous"></script>
-// <script src="{{ asset('/assets/js/admin/excel-template.js') }}"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.0/dist/exceljs.min.js" integrity="sha256-mFnpx7X3UJNOEWEl/KETM5KNxxytoU8Ohaadt4Fhlhw=" crossorigin="anonymous"></script>
+<script src="{{ asset('/assets/js/admin/excel-template.js') }}"></script> -->
 @endsection 

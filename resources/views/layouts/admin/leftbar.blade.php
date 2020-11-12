@@ -6,7 +6,10 @@
             <div class="vertical-menu-icon">
                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <div class="logobar">
-                        <a href="{{url('/')}}" class="logo"><img src="{{asset('assets/images/logo-unair-baru.png')}}" class="img-fluid" style="height: 90%; width: 80%;" alt="logo"></a>
+                        <a href="{{url('/')}}" class="logo">
+                            <img src="{{ asset('/assets/images/logo-unair-baru.png') }}" class="img-fluid" style="height: 100%; width: 80%;" alt="logo">
+                            {{-- <img src="https://sertif.sadamtech.xyz/assets/images/logo-unair-baru.png" class="img-fluid" style="height: 100%; width: 80%;" alt="logo"> --}}
+                        </a>
                     </div>
                     <!-- <a class="nav-link active" id="v-pills-crm-tab" data-toggle="pill" href="#v-pills-crm" role="tab" aria-controls="v-pills-crm" aria-selected="true"><img src="{{asset('assets/images/svg-icon/crm.svg')}}" class="img-fluid" alt="CRM" data-toggle="tooltip" data-placement="top" title="CRM"></a>
                     <a class="nav-link" id="v-pills-ecommerce-tab" data-toggle="pill" href="#v-pills-ecommerce" role="tab" aria-controls="v-pills-ecommerce" aria-selected="false"><img src="{{asset('assets/images/svg-icon/ecommerce.svg')}}" class="img-fluid" alt="eCommerce" data-toggle="tooltip" data-placement="top" title="eCommerce"></a>                            

@@ -88,6 +88,7 @@ class AcaraController extends Controller
         // $headings = $headings[0][0];
 
         // if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
+
             // Insert DB
             DB::table('acara')->insert([
                 // 'ID_TEMPLATE' => $request->input_template,
@@ -270,25 +271,25 @@ class AcaraController extends Controller
     public function storeSertif(Request $request)
     {
         $request->validate([
-            'template' => 'required',
-            'id_acara' => 'required',
-            'file_sertif' => 'required|file|image|mimes:jpg,jpeg,png',
+            'template' => 'required|bail|exists:App\Models\TemplateSertifikat,ID_TEMPLATE',
+            'id_acara' => 'required|bail|exists:App\Models\Acara,ID_ACARA',
+            'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg,png',
         ]);
 
-        $acara = Acara::find($request->id_acara);
+        DB::transaction(function() use($request){
+            $acara = Acara::find($request->id_acara);
 
-        $file_sertif = $request->file('file_sertif');
-        $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
-        $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
+            $file_sertif = $request->file('file_sertif');
+            $nama_file_sertif = date('Y_m_d').'_'.$file_sertif->getClientOriginalName();
+            $path_sertif = '/storage/sertifikat/'.$nama_file_sertif;
 
-        // Simpan file2 ke storage (public/storage/)
-        $file_sertif->move('storage/sertifikat', $nama_file_sertif);
+            // Simpan file2 ke storage (public/storage/)
+            $file_sertif->move('storage/sertifikat', $nama_file_sertif);
 
-        $acara->FILE_SERTIF = $path_sertif;
-        $acara->ID_TEMPLATE = $request->template;
-        $acara->save();
-
-        // dd($request->all());
+            $acara->FILE_SERTIF = $path_sertif;
+            $acara->ID_TEMPLATE = $request->template;
+            $acara->save();
+        });
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
     }
@@ -296,68 +297,71 @@ class AcaraController extends Controller
     public function storePartisipan(Request $request)
     {
         $request->validate([
-            'id_acara' => 'required',
-            'file_daftar_partisipan' => 'required|file|mimes:xls,xlsx',
+            'id_acara' => 'required|bail|exists:App\Models\Acara,ID_ACARA',
+            'file_daftar_partisipan' => 'required|bail|file|mimes:xls,xlsx',
         ]);
 
-        $peserta = PesertaAcara::where('ID_ACARA', $request->id_acara)->delete();
+        DB::transaction(function() use($request){
 
-        $acara = Acara::find($request->id_acara);
+            $peserta = PesertaAcara::where('ID_ACARA', $request->id_acara)->delete();
 
-        $file_daftar_partisipan = $request->file('file_daftar_partisipan');
-        $nama_file_daftar_partisipan = date('Y_m_d').'_'.$file_daftar_partisipan->getClientOriginalName();
-        $path_daftar_partisipan = '/storage/excel/'.$nama_file_daftar_partisipan;
+            $acara = Acara::find($request->id_acara);
 
-        // Simpan file ke storage (public/storage/)
-        $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
+            $file_daftar_partisipan = $request->file('file_daftar_partisipan');
+            $nama_file_daftar_partisipan = date('Y_m_d').'_'.$file_daftar_partisipan->getClientOriginalName();
+            $path_daftar_partisipan = '/storage/excel/'.$nama_file_daftar_partisipan;
 
-        $id_jenis_kegiatan = Acara::select('ID_JENIS_KEGIATAN')->where('ID_ACARA', '=', $request->id_acara)->first();
+            // Simpan file ke storage (public/storage/)
+            $file_daftar_partisipan->move('storage/excel', $nama_file_daftar_partisipan);
 
-        $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
+            $id_jenis_kegiatan = Acara::select('ID_JENIS_KEGIATAN')->where('ID_ACARA', '=', $request->id_acara)->first();
 
-        $headings = $headings[0][0];
+            $headings = (new HeadingRowImport)->toArray(public_path().$path_daftar_partisipan);
 
-        if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
+            $headings = $headings[0][0];
 
-            $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
+            if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
 
-            for($i=0;$i<count($partisipan[0]);$i++){
-                $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN', $id_jenis_kegiatan->ID_JENIS_KEGIATAN)->where('PARTISIPASI', $partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
+                $partisipan = Excel::toArray(new PartisipanImport, public_path().$path_daftar_partisipan);
 
-                if ($id_partisipasi != null) {
-                    $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
-                }
-                else{
-                    $partisipan[0][$i]["id_partisipasi"] = null;
-                }
+                for($i=0;$i<count($partisipan[0]);$i++){
+                    $id_partisipasi = Partisipasi::where('ID_JENIS_KEGIATAN', $id_jenis_kegiatan->ID_JENIS_KEGIATAN)->where('PARTISIPASI', $partisipan[0][$i]['partisipasi'])->value('ID_PARTISIPASI');
 
-                //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
-                if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
-                    User::create([
-                        'nim' => $partisipan[0][$i]['nim'],
-                        'NAMA_USER' => $partisipan[0][$i]['nama'],
-                        'password' => bcrypt($partisipan[0][$i]['nim']),
-                        'ID_TIPE_USER' => 2,
-                        'STATUS' => 1
+                    if ($id_partisipasi != null) {
+                        $partisipan[0][$i]["id_partisipasi"] = $id_partisipasi;
+                    }
+                    else{
+                        $partisipan[0][$i]["id_partisipasi"] = null;
+                    }
+
+                    //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
+                    if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
+                        User::create([
+                            'nim' => $partisipan[0][$i]['nim'],
+                            'NAMA_USER' => $partisipan[0][$i]['nama'],
+                            'password' => bcrypt($partisipan[0][$i]['nim']),
+                            'ID_TIPE_USER' => 2,
+                            'STATUS' => 1
+                        ]);
+                    }
+
+                    //mengubah atau menambahkan peserta acara
+                    PesertaAcara::insert([
+                        'NIM' =>  $partisipan[0][$i]['nim'],
+                        'ID_ACARA' =>  $request->id_acara,
+                        'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
                     ]);
                 }
-
-                //mengubah atau menambahkan peserta acara
-                PesertaAcara::insert([
-                    'NIM' =>  $partisipan[0][$i]['nim'],
-                    'ID_ACARA' =>  $request->id_acara,
-                    'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
-                ]);
+                Storage::disk('public')->delete($path_daftar_partisipan);
             }
-        }
-        else{
-            return Redirect::back()->withErrors(['File partisipan tidak sesuai format']);
-        }
+            else{
+                Storage::disk('public')->delete($path_daftar_partisipan);
+                return Redirect::back()->withErrors(['file_daftar_partisipan' => 'Mohon upload file partisipan sesuai format.']);
+            }
 
-        // Delete file
-        Storage::disk('public')->delete($path_daftar_partisipan);
-        // File::delete($path_daftar_partisipan);
-        // unlink($path_daftar_partisipan);
+            // Delete file
+            
+        });
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
     }

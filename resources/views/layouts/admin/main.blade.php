@@ -45,9 +45,9 @@
         <script src="{{ asset('/assets/js/vertical-menu.js') }}"></script> 
         <script src="{{ asset('/assets/plugins/switchery/switchery.min.js') }}"></script> 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-        @yield('script')
         <!-- Core JS -->
         <script src="{{ asset('/assets/js/core.js') }}"></script>
+        @yield('script')
         <!-- End JS -->
     </body>
 </html>    
