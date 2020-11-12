@@ -33,7 +33,7 @@
         <!-- End Leftbar -->
         <!-- Start Rightbar -->
             @include('layouts.mahasiswa.rightbar')          
-            @include('layouts.mahasiswa.modal-edit-nama')          
+            <!-- @include('layouts.mahasiswa.modal-edit-nama')           -->
             @yield('content')
         <!-- End Rightbar -->
     </div>

@@ -62,12 +62,12 @@
                                         </div>
                                         <div class="userbox pr-4">
                                             <ul class="list-unstyled mb-0">
-                                                <li class="media dropdown-item">
+                                                <!-- <li class="media dropdown-item">
                                                     <a href="#" class="profile-icon" data-toggle="modal" data-target="#modal-edit-nama-user">
                                                         <img src="{{ asset('/assets/images/svg-icon/settings.svg') }}" class="img-fluid" alt="Edit Nama">
                                                         Edit Nama
                                                     </a>
-                                                </li>
+                                                </li> -->
                                                 <li class="media dropdown-item">
                                                     <a href="{{ route('password/reset') }}" class="profile-icon">
                                                         <img src="{{ asset('/assets/images/svg-icon/authentication.svg') }}" class="img-fluid" alt="logout">

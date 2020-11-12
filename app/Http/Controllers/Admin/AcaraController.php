@@ -65,10 +65,14 @@ class AcaraController extends Controller
         
         // dd($request->all());
 
-        // $request->validate([
-        //     'file_sertif' => 'required|bail|file|image|mimes:jpg,jpeg,png',
-        //     'file_daftar_partisipan' => 'required|file|mimes:xls,xlsx'
-        // ]);
+        $request->validate([
+            'input_nama_acara' => 'required|string|max:300',
+            'input_tanggal_penyelenggaraan' => 'required|date',
+            'input_penyelenggara' => 'required|string|max:300',
+            'input_tahun_akademik' => 'required|bail|exists:App\Models\TahunAkademik,ID_TAHUN_AKADEMIK',
+            'input_jenis_kegiatan' => 'required|bail|exists:App\Models\JenisKegiatan,ID_JENIS_KEGIATAN',
+            'input_tingkat' => 'required|bail|exists:App\Models\Tingkat,ID_Tingkat'
+        ]);
           
         // $file_sertif = $request->file('file_sertif');
         // $file_daftar_partisipan = $request->file('file_daftar_partisipan');
@@ -155,6 +159,15 @@ class AcaraController extends Controller
     }
 
     public function store_edit_acara(Request $request){
+        $request->validate([
+            'input_nama_acara' => 'required|string|max:300',
+            'input_tanggal_penyelenggaraan' => 'required|date',
+            'input_penyelenggara' => 'required|string|max:300',
+            'input_tahun_akademik' => 'required|bail|exists:App\Models\TahunAkademik,ID_TAHUN_AKADEMIK',
+            'input_jenis_kegiatan' => 'required|bail|exists:App\Models\JenisKegiatan,ID_JENIS_KEGIATAN',
+            'input_tingkat' => 'required|bail|exists:App\Models\Tingkat,ID_Tingkat'
+        ]);
+
         DB::table('acara')->where('ID_ACARA', '=', $request->id_acara)->update([
             'ID_TINGKAT' => $request->input_tingkat,
             'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,

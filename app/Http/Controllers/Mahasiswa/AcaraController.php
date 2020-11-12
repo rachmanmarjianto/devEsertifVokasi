@@ -19,18 +19,18 @@ class AcaraController extends Controller
     	return view('mahasiswa.acara',compact("acara", "nama_mahasiswa"));
     }
 
-    public function update_nama_mahasiswa(Request $request)
-    {
-        $nim = Auth::user()->nim;
-        $nama = $request->nama;
+    // public function update_nama_mahasiswa(Request $request)
+    // {
+    //     $nim = Auth::user()->nim;
+    //     $nama = $request->nama;
 
-        DB::table('user')->where('nim', $nim)->update([
-            'NAMA_USER' => $nama
-        ]);
+    //     DB::table('user')->where('nim', $nim)->update([
+    //         'NAMA_USER' => $nama
+    //     ]);
 
-        $status_update_nama = "Berhasil!";
+    //     $status_update_nama = "Berhasil!";
 
-        return redirect('/mahasiswa-acara')->with('status_update_nama', 'Berhasil!');
-    }
+    //     return redirect('/mahasiswa-acara')->with('status_update_nama', 'Berhasil!');
+    // }
 
 }
