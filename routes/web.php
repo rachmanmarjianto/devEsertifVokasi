@@ -27,6 +27,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::post('/admin/upload-partisipan', 'Admin\AcaraController@storePartisipan');
 	Route::get('/admin/cetak-sertifikat/{id_acara}', 'Mahasiswa\SertifikatController@testCetakSertif');
 	Route::get('/cari-mahasiswa', 'Admin\CariMahasiswaController@index');
+	Route::post('/cari-mahasiswa/find-data', 'Admin\CariMahasiswaController@find_data');
 	
 
 	Route::get('/mahasiswa-acara', 'Mahasiswa\AcaraController@index')->name('mahasiswa-acara');
