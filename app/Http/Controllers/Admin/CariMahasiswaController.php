@@ -28,7 +28,7 @@ class CariMahasiswaController extends Controller
             ]);
 
             foreach ($peserta_acara as $peserta_acara) {
-                $acara[] = DB::table('acara')->where('ID_ACARA', $peserta_acara->ID_ACARA)->get(['ID_ACARA', 'NAMA_ACARA']);
+                $acara[] = DB::table('acara')->where('ID_ACARA', $peserta_acara->ID_ACARA)->get(['NAMA_ACARA', 'TANGGAL_PENYELENGGARAAN']);
             }
             return response()->json($acara);
         }       
