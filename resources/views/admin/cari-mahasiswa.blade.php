@@ -4,22 +4,9 @@
 <link href="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-{{-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> --}}
 <link rel="stylesheet" href="{{ asset('/assets/css/admin/cari-mahasiswa.css') }}">
 @endsection 
 @section('rightbar-content')
-    {{-- Alert update nama --}}
-    <!-- @if (session('status_update_nama'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: 'Nama anda berhasil diupdate!'
-        });
-    </script>
-    @endif -->
-    {{-- Alert update nama --}}
-    
 <!-- Start Breadcrumbbar -->                    
 <div class="breadcrumbbar">
     <div class="row align-items-center">
@@ -52,27 +39,22 @@
                         <div class="input-group col-sm-3">
                             <input type="text" class="form-control" placeholder="NIM" id="inputmask-cari" aria-label="NIM" aria-describedby="button-addon-group">
                             <div class="input-group-append">
-                                <button class="btn btn-sm btn-warning text-dark not-editing" type="button" id="button-addon-group">CARI</button>
+                                <button class="btn btn-sm btn-warning text-dark not-editing tombol-cari-nim" type="button" id="button-addon-group">CARI</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-striped table-bordered datatable-table">
+                        <div class="msg mb-3"></div>
+                        <table id="table-acara" class="table table-striped table-bordered d-none">
                             <thead class="thead-dark">
                                 <tr>
                                     <th>Nama Acara</th>
                                     <th>Tanggal Penyelenggaraan</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                
+                            <tbody class="table-body">
                             </tbody>
                         </table>
                     </div>
