@@ -50,6 +50,22 @@ class PartisipasiTableSeeder extends Seeder
                 'ID_JENIS_KEGIATAN' => 5,
             ),
             array (
+                'PARTISIPASI' => "Peserta",
+                'ID_JENIS_KEGIATAN' => 7,
+            ),
+            array (
+                'PARTISIPASI' => "Panitia",
+                'ID_JENIS_KEGIATAN' => 7,
+            ),
+            array (
+                'PARTISIPASI' => "Moderator",
+                'ID_JENIS_KEGIATAN' => 7,
+            ),
+            array (
+                'PARTISIPASI' => "Pemateri",
+                'ID_JENIS_KEGIATAN' => 7,
+            ),
+            array (
                 'PARTISIPASI' => "Finalis",
                 'ID_JENIS_KEGIATAN' => 12,
             ),

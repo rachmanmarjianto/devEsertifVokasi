@@ -1,5 +1,10 @@
 //mendefinisikan datatable
-$('.datatable-table').DataTable();
+$('.datatable-table').DataTable({
+	dom: 'Bfrtip',
+	buttons: [
+		'csv', 'excel', 'pdf'
+	]
+});
 
 //menyembunyikan tabel edit
 $("#edit-table-container").hide();
