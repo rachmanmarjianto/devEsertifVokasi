@@ -1,9 +1,9 @@
 @section('title', 'Cari Mahasiswa') 
 @extends('layouts.admin.main')
 @section('style')
-<link href="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+{{-- <link href="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+{{-- <link href="{{ asset('/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
+{{-- <link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" /> --}}
 <link rel="stylesheet" href="{{ asset('/assets/css/admin/cari-mahasiswa.css') }}">
 @endsection 
 @section('rightbar-content')
@@ -68,8 +68,8 @@
 
 @endsection 
 @section('script')
-<script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+{{-- <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script> --}}
+{{-- <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script> --}}
 <script src="{{ asset('/assets/plugins/bootstrap-inputmask/jquery.inputmask.bundle.min.js') }}"></script>
 <script src="{{ asset('/assets/js/admin/cari-mahasiswa.js') }}"></script>
 @endsection 

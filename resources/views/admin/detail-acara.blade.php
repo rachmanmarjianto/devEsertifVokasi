@@ -4,6 +4,7 @@
 <!-- DataTables css -->
 <link href="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.4/css/buttons.dataTables.min.css">
 <!-- Responsive Datatable css -->
 <link href="{{ asset('/assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet" type="text/css" />
 <link href="{{ asset('/assets/css/admin/acara.css') }}" rel="stylesheet" type="text/css" />
@@ -372,6 +373,13 @@
 <!-- Datatable js -->
 <script src="{{ asset('/assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('/assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('/assets/plugins/datatables/button.min.js') }}"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.html5.min.js"></script>
+{{-- <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.print.min.js"></script> --}}
 <script src="{{ asset('assets/plugins/pnotify/js/pnotify.custom.min.js') }}"></script>
 <script type="text/javascript">
     "use strict";
@@ -388,7 +396,4 @@
 </script>
 <script src="{{ asset('/assets/js/admin/detail-acara.js') }}"></script>
 <script src="{{ asset('/assets/plugins/dropzone/dist/dropzone.js') }}"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/exceljs@4.2.0/dist/exceljs.min.js" integrity="sha256-mFnpx7X3UJNOEWEl/KETM5KNxxytoU8Ohaadt4Fhlhw=" crossorigin="anonymous"></script>
-<script src="{{ asset('/assets/js/admin/excel-template.js') }}"></script> -->
 @endsection 

@@ -1,7 +1,7 @@
 // "use strict";
 $( function () {
     // Data table
-    $('.datatable-table').DataTable();
+    // $('.datatable-table').DataTable();
 
     /* -- Form - Input Mask -- */
     $('#inputmask-cari').inputmask('Regex', {regex: "^[0-9]{1,12}"});
@@ -64,8 +64,8 @@ $( function () {
 
                     for (let i = 1; i < data.length; i++) {
                         var row = '<tr>' +
-                                        '<td>' + data[i][0].ID_ACARA + '</td>' +
                                         '<td>' + data[i][0].NAMA_ACARA + '</td>' +
+                                        '<td>' + data[i][0].TANGGAL_PENYELENGGARAAN + '</td>' +
                                    '</tr>';
 
                         $('.table-body').append(row);
