@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class CariMahasiswaController extends Controller
 {
     public function index(){
-        return view('Admin.cari-mahasiswa');
+        return view('admin.cari-mahasiswa');
     }
 
     public function find_data(){
