@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
 use Session;
+use Hash;
 
 class HomeController extends Controller
 {
@@ -50,5 +51,12 @@ class HomeController extends Controller
         $user->save();
 
         return redirect('/');
+    }
+
+    public function verify_old_password()
+    {
+        $old_password = $_POST['old_password'];
+        $verify_result =  HASH::check($old_password, Auth::user()->password);
+        return response()->json($verify_result);
     }
 }
