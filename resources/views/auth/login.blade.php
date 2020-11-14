@@ -8,13 +8,35 @@
     <title>Login - E-Sertifikat Fakultas Vokasi</title>
 
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo-unair-baru.png') }}">
+    <link rel="shortcut icon" href="{{ asset('/assets/images/logo-unair-baru.png') }}">
     <!-- Start css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <!-- FontAwesome css -->
+    <link rel="stylesheet" href="{{ asset('/assets/fontawesome/css/all.min.css') }}">
     <style>
         .card{
             box-shadow: 10px 10px 15px;
+        }
+
+        .form-control {
+            border: 0;
+        }
+
+        .input-group {
+            border: 0.5px solid grey;
+        }
+
+        .input-group-text {
+            background-color: #E9ECEF;
+        }
+
+        .fas {
+            color: black;
+        }
+
+        .btn:hover {
+            background-color: rgb(19, 75, 49);
         }
     </style>
     <!-- End css -->
@@ -39,10 +61,20 @@
                                             <h1>E-Sertifikat Fakultas Vokasi</h1>
                                         </div>                                        
                                         <h4 class="text-primary my-4">Log in !</h4>
-                                        <div class="form-group">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-user"></i>
+                                                </span>
+                                            </div>
                                             <input type="text" class="form-control" name="nim" id="nim" placeholder="Enter Username here" required>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="fas fa-key"></i>
+                                                </span>
+                                            </div>
                                             <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password here" required>
                                         </div>
                                                              
@@ -62,12 +94,12 @@
     </div>
     <!-- End Containerbar -->
     <!-- Start js -->        
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
-    <script src="{{ asset('assets/js/detect.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('/assets/js/popper.min.js') }}"></script> --}}
+    <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/modernizr.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/detect.js') }}"></script>
+    {{-- <script src="{{ asset('/assets/js/jquery.slimscroll.js') }}"></script> --}}
     <!-- End js -->
 </body>
 </html>

@@ -8,13 +8,17 @@
     <title>Change Password - E-Sertifikat Fakultas Vokasi</title>
 
     <!-- Fevicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/logo-unair-baru.png') }}">
+    <link rel="shortcut icon" href="{{ asset('/assets/images/logo-unair-baru.png') }}">
     <!-- Start css -->
-    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/assets/css/style.css') }}" rel="stylesheet" type="text/css">
     <style>
         .card{
             box-shadow: 10px 10px 15px;
+        }
+
+        .btn:hover {
+            background-color: rgb(19, 75, 49);
         }
     </style>
     <!-- End css -->
@@ -33,7 +37,7 @@
                         <div class="auth-box-right">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ url('/change-pass') }}" method="POST">
+                                    <form action="{{ url('/change-pass') }}" method="POST" onsubmit="return validate_form()">
                                     @csrf
                                         <!-- <div class="form-head">
                                             <h1>E-Sertifikat Fakultas Vokasi</h1>
@@ -79,12 +83,13 @@
         }
       }
     </script>      
-    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
-    <script src="{{ asset('assets/js/detect.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/popper.min.js') }}"></script> --}}
+    <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/modernizr.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/detect.js') }}"></script>
+    {{-- <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script> --}}
+    {{-- <script src="{{ asset('/assets/js/admin/reset-password.js') }}"></script> --}}
     <!-- End js -->
 </body>
 </html>
