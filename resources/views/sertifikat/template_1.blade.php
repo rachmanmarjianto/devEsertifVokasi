@@ -48,13 +48,13 @@
 		/*color: white;*/
 		text-align: center;
 		alignment-baseline: central;
-		/*background-color: white;*/
+		background-color: white;
 	}
 
 	#ttd-dekan {
 		position: absolute;
-		width: 290px;
-		height: 120 px; 
+		width: 150 px;
+		height: 140 px; 
 		left: 195 px;
 		top: 610 px;
 		//150 595
