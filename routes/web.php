@@ -11,6 +11,7 @@ Route::middleware(['auth'])->group(function () {
 	Route::get('password/reset', function(){
 	    return view('auth.passwords.reset');
 	})->name('password/reset');
+	Route::post('/password/verify_old_pass', 'HomeController@verify_old_password');
 
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 	Route::post('/change-pass', 'HomeController@changepass');

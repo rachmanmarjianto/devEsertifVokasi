@@ -20,6 +20,10 @@
         .btn:hover {
             background-color: rgb(19, 75, 49);
         }
+
+        .btn-disabled {
+            pointer-events: none;
+        }
     </style>
     <!-- End css -->
 </head>
@@ -37,7 +41,8 @@
                         <div class="auth-box-right">
                             <div class="card">
                                 <div class="card-body">
-                                    <form action="{{ url('/change-pass') }}" method="POST" onsubmit="return validate_form()">
+                                    {{-- <form action="{{ url('/change-pass') }}" method="POST" onsubmit="return validate_form()"> --}}
+                                    <form action="{{ url('/change-pass') }}" method="POST">
                                     @csrf
                                         <!-- <div class="form-head">
                                             <h1>E-Sertifikat Fakultas Vokasi</h1>
@@ -46,13 +51,14 @@
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="old_password" id="old-password" placeholder="Enter Old Password here" required>
                                         </div>
+                                        <p style="color: red; display: none;" id="alert-old-pass">Password yang anda masukkan salah.</p>
                                         <div class="form-group">
                                             <input type="password" class="form-control" name="new_password" id="pass1" placeholder="Enter New Password here" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control" id="pass2" placeholder="Re-Enter Password here" oninput="check()" required>
                                         </div>   
-                                        <p style="color: red; display: none;" id="alert">Password tidak sesuai</p>                       
+                                        <p style="color: red; display: none;" id="alert">Password tidak sesuai.</p>                       
                                       <button type="submit" class="btn btn-success btn-lg btn-block font-18" id="button">Submit</button>
                                     </form>
                                 </div>
@@ -68,28 +74,28 @@
         <!-- End Container -->
     </div>
     <!-- End Containerbar -->
-    <!-- Start js -->  
-    <script type="text/javascript">
-      function check(){
-        console.log("masuk function");
-        if(document.getElementById("pass1").value != document.getElementById("pass2").value){
-          document.getElementById("alert").style.display = 'block';
-          document.getElementById("button").setAttribute('disabled',true);
-        }
-        else{
-          console.log("masuk else");
-          document.getElementById("alert").style.display = 'none';
-          document.getElementById("button").removeAttribute("disabled");
-        }
-      }
-    </script>      
+    <!-- Start js -->       
     <script src="{{ asset('/assets/js/jquery.min.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/popper.min.js') }}"></script> --}}
     <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/js/modernizr.min.js') }}"></script>
     <script src="{{ asset('/assets/js/detect.js') }}"></script>
-    {{-- <script src="{{ asset('assets/js/jquery.slimscroll.js') }}"></script> --}}
-    {{-- <script src="{{ asset('/assets/js/admin/reset-password.js') }}"></script> --}}
+    <script src="{{ asset('/assets/js/admin/reset-password.js') }}"></script>
+    <script type="text/javascript">
+        function check(){
+          console.log("masuk function");
+          if(document.getElementById("pass1").value != document.getElementById("pass2").value){
+            document.getElementById("alert").style.display = 'block';
+            document.getElementById("button").setAttribute('disabled',true);
+            document.getElementById("button").classList.add('btn-disabled');
+          }
+          else{
+            console.log("masuk else");
+            document.getElementById("alert").style.display = 'none';
+            document.getElementById("button").removeAttribute("disabled");
+            document.getElementById("button").classList.remove('btn-disabled');
+          }
+        }
+      </script> 
     <!-- End js -->
 </body>
 </html>
