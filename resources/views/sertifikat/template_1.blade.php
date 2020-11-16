@@ -53,8 +53,8 @@
 
 	#ttd-dekan {
 		position: absolute;
-		width: 150 px;
-		height: 140 px; 
+		width: 130 px;
+		height: 120 px; 
 		left: 195 px;
 		top: 610 px;
 		//150 595
@@ -111,6 +111,6 @@
 	<span id="nama-partisipan">{{ $partisipasi->user->NAMA_USER }}</span>
 	<span id="partisipasi">{{ $partisipasi->partisipasi->PARTISIPASI }}</span>
 	<img src="data:image/png;base64,{{ $qrcode }}" id="qrcode">
-    <img src="{{ asset('/ttd/'.'ttdku.png') }}" id="ttd-dekan" class="gambar-ttd">
+    <img src="{{ asset('/ttd/'.'dekan.png') }}" id="ttd-dekan" class="gambar-ttd">
 </body>
 </html>
