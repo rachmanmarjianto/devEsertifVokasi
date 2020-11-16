@@ -50,7 +50,7 @@ class SertifikatController extends Controller
     	$acara = Acara::find($id_acara);
     	$peserta = Auth::user()->nim;
         $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $peserta])->first();
-        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($peserta,$id_acara);
+        $encrypted = url('/validasi-sertifikat')."/".$this->getEncrypted($peserta,$id_acara);
         $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
     	$view = $acara->template_sertifikat->FILE_PHP;
 
@@ -64,7 +64,7 @@ class SertifikatController extends Controller
     	$acara = Acara::find($id_acara);
     	$partisipasi = PesertaAcara::where('ID_ACARA', '=', $id_acara)->first();
         // $partisipasi = PesertaAcara::where(['ID_ACARA' => $id_acara, 'NIM' => $nim])->first();
-        $encrypted = url('/cek-sertifikat')."/".$this->getEncrypted($partisipasi,$id_acara);
+        $encrypted = url('/validasi-sertifikat')."/".$this->getEncrypted($partisipasi,$id_acara);
         $qrcode = DNS2D::getBarcodePNG($encrypted, 'QRCODE');
     	$view = $acara->template_sertifikat->FILE_PHP;
 
