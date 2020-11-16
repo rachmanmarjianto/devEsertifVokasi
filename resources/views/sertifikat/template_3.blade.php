@@ -59,7 +59,7 @@
 		position: absolute;
 		width: 100 px;
 		height: 90 px; 
-		right: 470px;
+		right: 490px;
 		top: 610 px;
 		//150 595
 		font-family: 'Times New Roman';

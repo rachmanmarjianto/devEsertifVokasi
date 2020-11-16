@@ -55,7 +55,7 @@
 		position: absolute;
 		width: 130 px;
 		height: 120 px; 
-		left: 195 px;
+		left: 190 px;
 		top: 610 px;
 		//150 595
 		font-family: 'Times New Roman';
