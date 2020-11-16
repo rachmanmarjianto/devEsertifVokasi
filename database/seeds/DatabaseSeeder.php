@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PartisipasiTableSeeder::class);
         $this->call(TahunAkademikTableSeeder::class);
         $this->call(TemplateSertifikatTableSeeder::class);
-        $this->call(AcaraTableSeeder::class);
-        $this->call(PesertaAcaraTableSeeder::class);
+        // $this->call(AcaraTableSeeder::class);
+        // $this->call(PesertaAcaraTableSeeder::class);
     }
 }
