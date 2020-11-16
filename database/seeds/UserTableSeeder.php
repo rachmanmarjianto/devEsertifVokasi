@@ -14,20 +14,20 @@ class UserTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        for ($i=1; $i < 30; $i++) {
+        // for ($i=1; $i < 30; $i++) {
 
-            // generate username
-            $username = 151811513000 + $i;
+        //     // generate username
+        //     $username = 151811513000 + $i;
 
-            // Insert data ke database
-            DB::table('user')->insert([
-                'nim' => $username,
-                'ID_TIPE_USER' => 2,
-                'PASSWORD' => bcrypt(substr(str_replace(' ', '',strtolower($username)),0,20)),
-                'NAMA_USER' => $faker->firstName." ".$faker->lastName,
-                'STATUS' => 1
-            ]);
-        }
+        //     // Insert data ke database
+        //     DB::table('user')->insert([
+        //         'nim' => $username,
+        //         'ID_TIPE_USER' => 2,
+        //         'PASSWORD' => bcrypt(substr(str_replace(' ', '',strtolower($username)),0,20)),
+        //         'NAMA_USER' => $faker->firstName." ".$faker->lastName,
+        //         'STATUS' => 1
+        //     ]);
+        // }
 
         // Insert data ke database
         DB::table('user')->insert([
