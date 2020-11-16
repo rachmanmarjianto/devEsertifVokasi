@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
 
         // Insert data ke database
         DB::table('user')->insert([
-            'nim' => 151811513000,
+            'nim' => '151811513000',
             'ID_TIPE_USER' => 1,
             'PASSWORD' => bcrypt(substr(str_replace(' ', '',strtolower(151811513000)),0,20)),
             'NAMA_USER' => 'Supri',
