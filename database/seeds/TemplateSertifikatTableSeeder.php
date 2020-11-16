@@ -47,16 +47,16 @@ class TemplateSertifikatTableSeeder extends Seeder
         // Ghostscript::setGsPath('C:\Program Files (x86)\gs\gs8.64\bin\gswin32c.exe');
 
         // Ghostscript untuk di hosting/server
-        Ghostscript::setGsPath(base_path().'/public/assets/ghostscript/gs-9533-linux-x86_64');
+        // Ghostscript::setGsPath(base_path().'/public/assets/ghostscript/gs-9533-linux-x86_64');
 
         $template = TemplateSertifikat::all();
 
-        foreach($template as $t){
+        // foreach($template as $t){
 
-            $pdf = new Pdf(public_path($t->FILE_TEMPLATE));
-            $pdf->setOutputFormat('png')->saveImage(public_path('/template/preview_'.$t->NAMA_TEMPLATE.'.png'));
+       //    $pdf = new Pdf(public_path($t->FILE_TEMPLATE));
+       //     $pdf->setOutputFormat('png')->saveImage(public_path('/template/preview_'.$t->NAMA_TEMPLATE.'.png'));
 
-        }
+       // }
         
         
     }
