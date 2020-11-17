@@ -93,18 +93,20 @@ class AcaraController extends Controller
 
         // if($headings[0] == "nim" && $headings[1] == "nama" && $headings[2] == "partisipasi"){
 
-            // Insert DB
-            DB::table('acara')->insert([
-                // 'ID_TEMPLATE' => $request->input_template,
-                'ID_TINGKAT' => $request->input_tingkat,
-                'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
-                'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
-                'NAMA_ACARA' => $request->input_nama_acara,
-                'PENYELENGGARA' => $request->input_penyelenggara,
-                'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
-                // 'FILE_SERTIF' => $path_sertif,
-                // 'FILE_NAMA' => $path_daftar_partisipan
-            ]);
+            DB::transaction(function() use($request){
+                // Insert DB
+                DB::table('acara')->insert([
+                    // 'ID_TEMPLATE' => $request->input_template,
+                    'ID_TINGKAT' => $request->input_tingkat,
+                    'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
+                    'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
+                    'NAMA_ACARA' => $request->input_nama_acara,
+                    'PENYELENGGARA' => $request->input_penyelenggara,
+                    'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan,
+                    // 'FILE_SERTIF' => $path_sertif,
+                    // 'FILE_NAMA' => $path_daftar_partisipan
+                ]);
+            });
 
             //ambil id acara
             $acara = Acara::select('id_acara')->where([
@@ -168,14 +170,16 @@ class AcaraController extends Controller
             'input_tingkat' => 'required|bail|exists:App\Models\Tingkat,ID_Tingkat'
         ]);
 
-        DB::table('acara')->where('ID_ACARA', '=', $request->id_acara)->update([
-            'ID_TINGKAT' => $request->input_tingkat,
-            'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
-            'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
-            'NAMA_ACARA' => $request->input_nama_acara,
-            'PENYELENGGARA' => $request->input_penyelenggara,
-            'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan
-        ]);
+        DB::transaction(function() use($request){
+            DB::table('acara')->where('ID_ACARA', '=', $request->id_acara)->update([
+                'ID_TINGKAT' => $request->input_tingkat,
+                'ID_TAHUN_AKADEMIK' => $request->input_tahun_akademik,
+                'ID_JENIS_KEGIATAN' => $request->input_jenis_kegiatan,
+                'NAMA_ACARA' => $request->input_nama_acara,
+                'PENYELENGGARA' => $request->input_penyelenggara,
+                'TANGGAL_PENYELENGGARAAN' => $request->input_tanggal_penyelenggaraan
+            ]);
+        });
 
         return redirect('/admin/detail-acara/'.$request->id_acara);
     }
