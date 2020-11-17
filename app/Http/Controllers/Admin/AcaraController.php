@@ -347,6 +347,8 @@ class AcaraController extends Controller
                         $partisipan[0][$i]["id_partisipasi"] = null;
                     }
 
+                    $partisipan[0][$i]['nim'] = trim($partisipan[0][$i]['nim']);
+
                     //mengecek apakah ada nim di tabel user. Jika tidak ada, dibuat akun baru.
                     if(!User::where('nim', $partisipan[0][$i]['nim'])->exists()){
                         User::create([
