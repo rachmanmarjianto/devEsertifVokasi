@@ -364,15 +364,18 @@ class AcaraController extends Controller
                         ]);
                     }
 
-                    $data = array(
+                    $data = array([
                         'NIM' =>  $partisipan[0][$i]['nim'],
                         'ID_ACARA' =>  $request->id_acara,
                         'ID_PARTISIPASI'  => $partisipan[0][$i]['id_partisipasi']
-                    );
+                    ]);
 
+                    // var_dump($data);
                     //mengubah atau menambahkan peserta acara
                     PesertaAcara::insert($data);
                 }
+                // PesertaAcara::insert($data);
+
                 Storage::disk('public')->delete($path_daftar_partisipan);
             }
             else{
