@@ -21,7 +21,7 @@
 		font-family: 'Times New Roman';
 		font-size: 28pt;
 		/*border-color: yellow;*/
-		background-color: white;
+		/*background-color: white;*/
 		/*color: white;*/
 	}
 	#partisipasi {

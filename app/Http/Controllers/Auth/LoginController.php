@@ -44,10 +44,12 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (Auth::user()->ID_TIPE_USER == 1) {
-            return redirect()->route('admin-acara');
+            // return redirect()->route('admin-acara');
+            return '/admin-acara';
 
          } else if (Auth::user()->ID_TIPE_USER == 2) {
-            return redirect()->route('mahasiswa-acara');
+            // return redirect()->route('mahasiswa-acara');
+            return '/mahasiswa-acara';
          }
     }
 
